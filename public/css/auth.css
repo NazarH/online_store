@@ -1,0 +1,113 @@
+.login-back{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 12;
+    opacity: 0.5;
+
+
+}
+
+.login-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+
+    width: 100%;
+    border-bottom: 1px solid #C3C3C3;
+}
+
+.login-top>div:first-child{
+    font-size: 22px;
+}
+
+.login-form{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    z-index: 13;
+    border: 1px solid #C3C3C3;
+    padding-bottom: 15px;
+
+    left: 50%;
+    top: 50%;
+    margin-left: -165px;
+    margin-top: -300px;
+
+    transition: width 1s cubic-bezier(0, 0, 1, 1) 500ms;
+}
+
+.login-bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+.login-bottom>input{
+    width: 350px;
+    height: 40px;
+    border: 1px solid #C3C3C3;
+    margin: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+.login-bottom>div{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-bottom>div>button:first-child{
+    width: 350px;
+    height: 40px;
+    color: white;
+    background: black;
+    padding: 6px 15px 6px 15px;
+    font-weight: bold;
+
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.login-bottom>div>div{
+    text-align: center;
+    background: white;
+    font-weight: bold;
+    margin-top: 10px;
+
+    cursor: pointer;
+}
+
+.login-bottom>div>button>a{
+    color: white;
+}
+
+.login-close{
+    align-self: end;
+    margin-right: 5px;
+    margin-top: 2px;
+    color: black;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.login-title{
+    align-self: start;
+    margin-left: 5px;
+    color: #797878;
+    font-size: 12px;
+}
+
+/* Register */
+
+.reg{
+}

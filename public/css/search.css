@@ -1,0 +1,17 @@
+.container>.item{
+    border-left: 1px solid #C3C3C3;
+    border-top: 1px solid #C3C3C3;
+}
+
+.find{
+    margin: 15px 0px 15px 0px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.not-find{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+}

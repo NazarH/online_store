@@ -1,0 +1,71 @@
+.admin{
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    overflow-x: hidden;
+}
+
+.admin__nav{
+    width: 25%;
+    min-height: 100vh;
+    border-right: 1px solid black;
+    background: black;
+}
+
+.admin__content{
+    width: 70%;
+}
+
+.admin__user{
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    padding: 10px 30px 30px 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin__list{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.admin__list>a{
+    color: white;
+    font-size: 23px;
+    width: 100%;
+    padding: 10px 0px 10px 30px;
+}
+
+.admin__list>a:hover{
+    background: white;
+    color: black;
+}
+
+.active{
+    background: white;
+    color: black;
+}
+
+.main-page-redirect{
+    margin-bottom: 10px;
+    background: white;
+    color: black;
+    min-width: 96px;
+    max-width: 116px;
+    padding: 10px;
+}
+
+.red{
+    color: darkred;
+}
+
+.right{
+    text-align: right;
+}

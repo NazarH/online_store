@@ -1,0 +1,88 @@
+.empty-basket{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.basket-item{
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    margin: 0 auto;
+    padding: 25px;
+    margin-top: 10px;
+    border: 1px solid #C3C3C3;
+}
+
+.basket-item>div{
+    display: flex;
+    font-size: 18px;
+}
+
+.basket-image{
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 75px;
+}
+
+.basket-image>img{
+    width:auto;
+    max-height:100%;
+}
+
+.basket-item__bold{
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.basket-item__bold>div{
+    text-align: right;
+}
+
+.basket-form{
+    display: flex;
+    justify-content: center;
+}
+
+.basket-btn{
+    color: white;
+    background: black;
+    padding: 9px 20px 9px 20px;
+    font-weight: bold;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    text-align: center;
+}
+
+/* */
+
+.total-amount{
+    display: flex;
+    font-size: 18px;
+
+    margin-top: 15px;
+    justify-content: end;
+    margin-right: 145px;
+}
+
+.total-amount>nav{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* */
+
+.basket-delete-form>input{
+    display: none;
+}
+
+.basket-delete-form>button{
+    font-weight: bold;
+    background: white;
+}

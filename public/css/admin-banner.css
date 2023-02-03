@@ -1,0 +1,67 @@
+.banners{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.banners__form-top{
+    display: flex;
+    align-items: center;
+
+    width: 650px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.banners__form-top>input{
+    height: 34px;
+    padding-left: 10px;
+    font-size: 15px;
+    border: 2px solid black;
+    margin-right: 4px;
+}
+
+.banners__form-top>button{
+    color: white;
+    background: black;
+    padding: 9px 20px 9px 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.table-banner{
+    width: 685px;
+}
+
+.choose{
+    display: flex;
+    margin-top: 15px;
+}
+
+.choose>div{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.choose>div:first-child{
+    margin-right: 20px;
+}
+
+.choose>div>input{
+    margin-right: 3px;
+}
+
+.banner__create{
+    width: 650px;
+    border: 2px solid black;
+}
+
+.table__item{
+    text-align: center !important;
+}
+
+.input_size{
+    width: 130px;
+}
