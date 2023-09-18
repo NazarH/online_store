@@ -26,9 +26,9 @@
     <div class="wrapper">
         <div class="header">
             @unless (empty($top_banner))
-                <a href="/products/{{$top_banner[0]->link}}" class="header__banner"
-                    style="background:{{ $top_banner[0]->back_color }}; color: {{ $top_banner[0]->text_color }}">
-                    {{ $top_banner[0]->text }}
+                <a href="/products/{{$top_banner->link}}" class="header__banner"
+                    style="background:{{ $top_banner->back_color }}; color: {{ $top_banner->text_color }}">
+                    {{ $top_banner->text }}
                 </a>
             @endunless
             <div class="header__menu">
