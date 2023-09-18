@@ -1,0 +1,32 @@
+.order{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 65px;
+}
+
+.order__title{
+    align-self: center;
+    font-size: 23px;
+    font-weight: bold;
+    margin: 25px;
+    text-align: center;
+    border-bottom: 1px solid #C3C3C3;
+    padding-bottom: 10px;
+    width: 70%;
+}
+
+.order__block{
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    margin-left: 50px;
+    font-size: 17px;
+}
+
+.order__block>div:first-child{
+    width: 200px;
+}
+
+.order__block>div:last-child{
+    font-weight: bold;
+}

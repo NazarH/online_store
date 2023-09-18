@@ -1,0 +1,174 @@
+.profile-dropdown{
+    position: absolute;
+    background: black;
+    color: black;
+
+    right: 0;
+    margin-top: 85px;
+    border: 1px solid #C3C3C3;
+    border-right: 1px solid black;
+
+    display: none;
+    flex-direction: column;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.profile-dropdown>a{
+    color: white;
+    padding: 10px 60px 10px 60px !important;
+
+    text-align: center;
+}
+
+.profile-dropdown>a:hover{
+    background: white;
+    color: black
+}
+
+/* Profile page */
+.profile-contain{
+    display: flex;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    width: 24%;
+
+    margin-top: 22px;
+}
+
+.personal{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 76%;
+
+    margin-top: 22px;
+    margin-bottom: 22px;
+    border: 1px solid #C3C3C3;
+
+    padding: 22px;
+}
+
+.personal>div{
+    display: flex;
+    align-items: center;
+}
+
+.personal>button{
+    color: white;
+    background: black;
+    padding: 9px 20px 9px 20px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    width: 200px;
+}
+
+.personal>div>div:first-child{
+    width: 150px;
+}
+
+.personal__title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.margin{
+    margin-top: 0px;
+}
+
+.personal>div>div>input{
+    border: 1px solid black;
+    min-width: 450px;
+    padding: 5px 0px 5px 15px;
+    margin-bottom: 10px;
+}
+
+.list>div{
+    padding: 15px 60px 15px 10px;
+    border: 1px solid #C3C3C3;
+
+    cursor: pointer;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.list>div:first-child{
+    border-bottom: none;
+}
+
+.list>div:hover{
+    background: black;
+    color: white;
+}
+
+.personal__title:first-child{
+    margin-top: 0px;
+}
+
+.aver-profile{
+    min-height: 659px;
+}
+
+/* */
+
+.temp{
+    width: 843.6px;
+    height: 615px;
+    border: 1px solid #C3C3C3;
+    margin-top: 22px;
+}
+
+/* */
+
+.orders{
+    width: 843.6px;
+    min-height: 615px;
+    border: 1px solid #C3C3C3;
+    margin-top: 22px;
+    display: none;
+    flex-direction: column;
+}
+
+.profile-order-green{
+    border: 1px solid lawngreen;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 10px;
+}
+
+.profile-order>div{
+    text-align: center;
+}
+
+.profile-order>div>div:first-child{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.profile-order>div>div:last-child{
+    font-size: 18px;
+}
+
+.profile-order-red{
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 10px;
+}

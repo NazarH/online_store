@@ -1,0 +1,154 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.header{
+    flex: 0 0 auto;
+}
+
+.average{
+    flex: 1 0 auto;
+}
+
+.footer{
+    flex: 0 0 auto;
+}
+
+
+
+.content__top{
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.content__icon{
+    width: 18px;
+    height: 18px;
+
+    margin-left: 5px;
+}
+
+.content__item-text{
+    width: 90%;
+    margin-left: 10px;
+}
+
+/* Banners */
+
+.content__banners{
+    margin-top: 15px;
+    width: 100%;
+}
+
+.press-left, .press-right{
+    display: flex;
+    justify-content: center;
+    font-size: 45px;
+
+    padding: 0px 10px 0px 10px;
+    color: #C3C3C3;
+    cursor: pointer;
+}
+
+.press-left:hover, .press-right:hover{
+    color: black;
+}
+
+.content__banner-block{
+    display: flex;
+    align-items: center;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.content__banner-block>a{
+
+    border: 5px solid #C3C3C3;
+    font-weight: bold;
+}
+
+.content__banner-block>a>div{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: white;
+}
+
+.content__banner{
+
+    width: 100%;
+    height: 360px;
+
+    font-size: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* */
+
+.content__bottom{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 30px;
+    margin-left: 45px;
+    margin-bottom: 30px;
+}
+
+.content__title{
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.content__items{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content__products{
+    display: flex;
+}
+
+.content__items>.content__products>.item{
+    width: 19.2%;
+    border-top: 1px solid #C3C3C3;
+}
+
+.content__items>.content__products>.item:first-child{
+    border-left: 1px solid #C3C3C3;
+}
+
+.content__items>.content__products>.item:last-child{
+    border-right: 1px solid #C3C3C3;
+}
+
+/* */
+
+.content__items>.viewed__rev-products{
+    margin-top: 0px;
+}
+
+.content__items>.viewed__rev-products>.item{
+    width: 19.2%;
+}
+
+.red{
+    color: red;
+}
+
+
+
+
+
