@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 @extends('layouts.admin')
 @section('content')
 
-=======
-<x-admin.admin-nav>
-    <x-slot:title>
-        OnlineStore - замовлення
-        </x-slot>
->>>>>>> bbcfcfb7764e40f704a2e8732ee6ce3046a23d2b
         <div class="order">
             <div class="order__title">
                 Контактні дані

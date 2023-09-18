@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 @extends('layouts.base')
 @section('content')
 
-=======
-<x-base.base>
-    <x-slot:title>
-        OnlineStore - особистий кабінет
-        </x-slot>
-        <x-header.header :top_banner="$top_banner"></x-header.header>
->>>>>>> bbcfcfb7764e40f704a2e8732ee6ce3046a23d2b
         <div class="average aver-profile">
             <div class="container profile-contain">
                 <div class="list">
@@ -145,10 +137,5 @@
                 <div class="temp" id="temp"></div>
             </div>
         </div>
-<<<<<<< HEAD
 
 @endsection
-=======
-        <x-footer.footer></x-footer.footer>
-</x-base.base>
->>>>>>> bbcfcfb7764e40f704a2e8732ee6ce3046a23d2b
