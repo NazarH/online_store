@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 @extends('layouts.admin')
 @section('content')
 
+=======
+<x-admin.admin-nav>
+    <x-slot:title>
+        OnlineStore - статистика
+        </x-slot>
+>>>>>>> bbcfcfb7764e40f704a2e8732ee6ce3046a23d2b
         <div class="container">
             <table class="table">
                 <tr>
@@ -22,5 +29,9 @@
             </table>
         </div>
         <x-admin.admin-table-products :orders="$most_popular"></x-admin.admin-table-products>
+<<<<<<< HEAD
 
 @endsection
+=======
+</x-admin.admin-nav>
+>>>>>>> bbcfcfb7764e40f704a2e8732ee6ce3046a23d2b

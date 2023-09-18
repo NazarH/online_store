@@ -7,7 +7,10 @@
 .banners__form-top{
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     justify-content: center;
+=======
+>>>>>>> bbcfcfb7764e40f704a2e8732ee6ce3046a23d2b
 
     width: 650px;
     margin-top: 15px;
@@ -33,8 +36,11 @@
 
 .table-banner{
     width: 685px;
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
+=======
+>>>>>>> bbcfcfb7764e40f704a2e8732ee6ce3046a23d2b
 }
 
 .choose{
