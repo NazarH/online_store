@@ -32,14 +32,6 @@
 </template>
 <script>
     export default{
-        props: ['products', 'csrf'],
-        data(){
-            return{
-
-            }
-        },
-        methods:{
-
-        }
+        props: ['products', 'csrf']
     }
 </script>

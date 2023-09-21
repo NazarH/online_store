@@ -33,7 +33,8 @@
             }
         },
         methods:{
-            closeRegForm(){
+            closeRegForm()
+            {
                 this.$emit('closeRegForm');
             },
             register(){

@@ -34,7 +34,8 @@
                 }
             },
             methods:{
-                createCategory(){
+                createCategory()
+                {
                     axios.post('/categories/create', {
                         name: this.name,
                     }) .then(res => {

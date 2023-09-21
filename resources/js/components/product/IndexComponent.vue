@@ -161,13 +161,16 @@ export default {
         }
     },
     methods: {
-        leftClick() {
+        leftClick()
+        {
             document.getElementById('l').click();
         },
-        rightClick() {
+        rightClick()
+        {
             document.getElementById('r').click();
         },
-        pressLeftImg(count) {
+        pressLeftImg(count)
+        {
             document.getElementById('block-image-' + this.key).style = 'border: none';
             document.getElementById('main-img-' + this.key).style = 'display: none';
             if (this.key === 0) {
@@ -181,7 +184,8 @@ export default {
                 document.getElementById('main-img-' + this.key).style = 'display: block';
             }
         },
-        pressRightImg(count) {
+        pressRightImg(count)
+        {
             document.getElementById('block-image-' + this.key).style = 'border: none';
             document.getElementById('main-img-' + this.key).style = 'display: none';
             this.key++;

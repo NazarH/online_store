@@ -22,15 +22,14 @@ export default{
     emits: ['authForm', 'registerForm'],
     props: ['csrf'],
     methods: {
-        closeForm(){
+        closeForm()
+        {
             this.$emit('authForm');
         },
-        showRegForm(){
+        showRegForm()
+        {
             this.$emit('registerForm');
         }
-    },
-    computed: {
-
     }
 }
 </script>

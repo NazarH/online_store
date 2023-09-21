@@ -116,17 +116,21 @@ export default {
         DropdownComponent
     },
     methods: {
-        visibleMenu() {
+        visibleMenu()
+        {
             this.menu = !this.menu;
         },
-        authForm() {
+        authForm()
+        {
             this.login = !this.login;
         },
-        registerForm(){
+        registerForm()
+        {
             this.login = !this.login;
             this.register = !this.register;
         },
-        closeRegForm(){
+        closeRegForm()
+        {
             this.register = !this.register;
         }
     }
