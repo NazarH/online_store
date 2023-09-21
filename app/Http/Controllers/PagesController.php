@@ -4,36 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Banner;
-use App\Models\ListTv;
 use App\Models\Review;
-use App\Models\ListBook;
-use App\Models\TopBanner;
-use App\Models\BlockBanner;
-use App\Models\ListNotebook;
-use Illuminate\Http\Request;
-use App\Models\ListMobilePhone;
-use Illuminate\Support\Facades\DB;
+
 use App\Http\Controllers\Products\BaseController;
+
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class PagesController extends BaseController
 {
-    public function index(): object
+    public function index(): View
     {
-        // $top_banner = TopBanner::first();
-        // $block_banners = BlockBanner::all();
-        // $notebook = ListNotebook::orderBy(DB::raw('RAND()'))->take(2)->get();
-        // $book = ListBook::orderBy(DB::raw('RAND()'))->take(1)->get();
-        // $television = ListTv::orderBy(DB::raw('RAND()'))->take(1)->get();
-        // $phone = ListMobilePhone::orderBy(DB::raw('RAND()'))->take(1)->get();
-        // $rev_products = $this->service->reviewed();
-        // $products = $this->service->most_popular();
-        // $products = $this->service->products_sort($products);
         $top_banner = Banner::where('banner_type', 'top')->latest()->get()[0];
         $block_banners = Banner::where('banner_type', 'block')->get();
-        return view('main-page.index', compact('top_banner', 'block_banners'));
+        $user = Auth::user();
+        return view('main-page.index', compact('top_banner', 'block_banners', 'user'));
     }
 
-    public function redirect(): object
+    public function redirect(): RedirectResponse
     {
         return redirect(asset('/main-page'));
     }

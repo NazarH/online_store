@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class BaseController extends Controller
 {
     public $service;
-    public function __construct(Service $service){
+    public function __construct(Service $service)
+    {
         $this->service = $service;
     }
 }

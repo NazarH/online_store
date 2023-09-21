@@ -12,136 +12,136 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductService
 {
-    public function arrSort($request)
-    {
-        $arr = [];
-        foreach ($request->request as $key => $value){
-            if($key === '_token') continue;
-            $key = substr($key, 0, -2);
-            if(mb_substr($key,  -1) === '_') $key = substr($key, 0, -1);
-            if($key === 'price_min' && $value === null) continue;
-            if($key === 'price_max' && $value === null) continue;
+    // public function arrSort($request)
+    // {
+    //     $arr = [];
+    //     foreach ($request->request as $key => $value){
+    //         if($key === '_token') continue;
+    //         $key = substr($key, 0, -2);
+    //         if(mb_substr($key,  -1) === '_') $key = substr($key, 0, -1);
+    //         if($key === 'price_min' && $value === null) continue;
+    //         if($key === 'price_max' && $value === null) continue;
 
-            if(array_key_exists($key, $arr)){
-                if(strpos($value, '-') !== false) $value = explode('-', $value);
-                array_push($arr[$key], $value);
-            }
-            else{
-                $arr[$key] = [];
-                if(strpos($value,'-') !== false) $value = explode('-', $value);
-                array_push($arr[$key], $value);
-            }
-        }
-        return $arr;
-    }
+    //         if(array_key_exists($key, $arr)){
+    //             if(strpos($value, '-') !== false) $value = explode('-', $value);
+    //             array_push($arr[$key], $value);
+    //         }
+    //         else{
+    //             $arr[$key] = [];
+    //             if(strpos($value,'-') !== false) $value = explode('-', $value);
+    //             array_push($arr[$key], $value);
+    //         }
+    //     }
+    //     return $arr;
+    // }
 
-    public function sendReview($request)
-    {
-        $id = preg_replace('/[^0-9]/', '', $_SERVER['REQUEST_URI']);
-        $product = strpos($_SERVER['REQUEST_URI'], '/notebooks/') !== false ? 'notebook_id'
-            : (strpos($_SERVER['REQUEST_URI'], '/books/') !== false ? 'book_id'
-                : (strpos($_SERVER['REQUEST_URI'], '/mobile-phones/') !== false ? 'phone_id'
-                    : (strpos($_SERVER['REQUEST_URI'], '/televisions/') !== false ? 'television_id' : '')));
-        $benefits = $request['benefits'] !== null ? $request['benefits'] : 'Немає';
-        $disadvantages = $request['disadvantages'] !== null ? $request['disadvantages'] : 'Немає';
-        if($request['review'] === null) return 0;
-        Review::create([
-            'review' => trim($request['review']),
-            'user_id' => Auth::user()->id,
-            'benefits' => trim($benefits),
-            'disadvantages' => trim($disadvantages),
-            $product => $id
-        ]);
-    }
+    // public function sendReview($request)
+    // {
+    //     $id = preg_replace('/[^0-9]/', '', $_SERVER['REQUEST_URI']);
+    //     $product = strpos($_SERVER['REQUEST_URI'], '/notebooks/') !== false ? 'notebook_id'
+    //         : (strpos($_SERVER['REQUEST_URI'], '/books/') !== false ? 'book_id'
+    //             : (strpos($_SERVER['REQUEST_URI'], '/mobile-phones/') !== false ? 'phone_id'
+    //                 : (strpos($_SERVER['REQUEST_URI'], '/televisions/') !== false ? 'television_id' : '')));
+    //     $benefits = $request['benefits'] !== null ? $request['benefits'] : 'Немає';
+    //     $disadvantages = $request['disadvantages'] !== null ? $request['disadvantages'] : 'Немає';
+    //     if($request['review'] === null) return 0;
+    //     Review::create([
+    //         'review' => trim($request['review']),
+    //         'user_id' => Auth::user()->id,
+    //         'benefits' => trim($benefits),
+    //         'disadvantages' => trim($disadvantages),
+    //         $product => $id
+    //     ]);
+    // }
 
-    public function reviewed(): array
-    {
-        $reviewed = [];
-        foreach ($_COOKIE as $key => $value){
-            if(strpos($key, '/notebook/') !== false){
-                $notebook = ListNotebook::find($value);
-                $notebook->link = '/notebooks/';
-                $reviewed[] = $notebook;
-            } else if(strpos($key, '/phone/') !== false){
-                $phone = ListMobilePhone::find($value);
-                $phone->link = '/mobile-phones/';
-                $reviewed[] = $phone;
-            } else if(strpos($key, '/book/') !== false){
-                $book = ListBook::find($value);
-                $book->link = '/books/';
-                $reviewed[] = $book;
-            } else if(strpos($key, '/tv/') !== false){
-                $tv = ListTv::find($value);
-                $tv->link = '/televisions/';
-                $reviewed[] = $tv;
-            }
-        }
-        $reviewed = array_reverse($reviewed);
-        return $reviewed;
-    }
+    // public function reviewed(): array
+    // {
+    //     $reviewed = [];
+    //     foreach ($_COOKIE as $key => $value){
+    //         if(strpos($key, '/notebook/') !== false){
+    //             $notebook = ListNotebook::find($value);
+    //             $notebook->link = '/notebooks/';
+    //             $reviewed[] = $notebook;
+    //         } else if(strpos($key, '/phone/') !== false){
+    //             $phone = ListMobilePhone::find($value);
+    //             $phone->link = '/mobile-phones/';
+    //             $reviewed[] = $phone;
+    //         } else if(strpos($key, '/book/') !== false){
+    //             $book = ListBook::find($value);
+    //             $book->link = '/books/';
+    //             $reviewed[] = $book;
+    //         } else if(strpos($key, '/tv/') !== false){
+    //             $tv = ListTv::find($value);
+    //             $tv->link = '/televisions/';
+    //             $reviewed[] = $tv;
+    //         }
+    //     }
+    //     $reviewed = array_reverse($reviewed);
+    //     return $reviewed;
+    // }
 
-    public function firstElementSplice()
-    {
-        foreach ($_COOKIE as $key => $value){
-            setcookie($key,$value, time() - 10800, '/main-page');
-            setcookie($key,$value, time() - 10800, '/notebooks');
-            setcookie($key,$value, time() - 10800, '/books');
-            setcookie($key,$value, time() - 10800, '/mobile-phones');
-            setcookie($key,$value, time() - 10800, '/televisions');
-            break;
-        }
-    }
+    // public function firstElementSplice()
+    // {
+    //     foreach ($_COOKIE as $key => $value){
+    //         setcookie($key,$value, time() - 10800, '/main-page');
+    //         setcookie($key,$value, time() - 10800, '/notebooks');
+    //         setcookie($key,$value, time() - 10800, '/books');
+    //         setcookie($key,$value, time() - 10800, '/mobile-phones');
+    //         setcookie($key,$value, time() - 10800, '/televisions');
+    //         break;
+    //     }
+    // }
 
-    public function cookieSplice()
-    {
-        foreach ($_COOKIE as $key => $value){
-                if($key === "XSRF-TOKEN") unset($_COOKIE[$key]);
-                if($key === "laravel_session") unset($_COOKIE[$key]);
-        }
-    }
+    // public function cookieSplice()
+    // {
+    //     foreach ($_COOKIE as $key => $value){
+    //             if($key === "XSRF-TOKEN") unset($_COOKIE[$key]);
+    //             if($key === "laravel_session") unset($_COOKIE[$key]);
+    //     }
+    // }
 
-    public function basketIndex($request)
-    {
-            foreach ($_COOKIE as $key => $value){
-                if($key === "XSRF-TOKEN") unset($_COOKIE[$key]);
-                if($key === "laravel_session") unset($_COOKIE[$key]);
-            }
-            if(str_contains($request->link, '/notebooks')){
-                if(empty($_COOKIE['/notebook/'.$request->id])){
-                    setcookie('/notebook/'.$request->id, $request->id, time() + 10800, '/basket');
-                    setcookie('/notebook/'.$request->id, $request->id, time() + 10800, '/orders');
-                }
-            } else if(str_contains($request->link, '/books')){
-                if(empty($_COOKIE['/book/'.$request->id])){
-                    setcookie('/book/'.$request->id, $request->id, time() + 10800, '/basket');
-                    setcookie('/book/'.$request->id, $request->id, time() + 10800, '/orders');
-                }
-            } else if(str_contains($request->link, '/mobile-phones')){
-                if(empty($_COOKIE['/phone/'.$request->id])){
-                    setcookie('/phone/'.$request->id, $request->id, time() + 10800, '/basket');
-                    setcookie('/phone/'.$request->id, $request->id, time() + 10800, '/orders');
-                }
-            } else if(str_contains($request->link, '/televisions')){
-                if(empty($_COOKIE['/tv/'.$request->id])){
-                    setcookie('/tv/'.$request->id, $request->id, time() + 10800, '/basket');
-                    setcookie('/tv/'.$request->id, $request->id, time() + 10800, '/orders');
-                }
-            }
-            header("Refresh: 0");
-    }
+    // public function basketIndex($request)
+    // {
+    //         foreach ($_COOKIE as $key => $value){
+    //             if($key === "XSRF-TOKEN") unset($_COOKIE[$key]);
+    //             if($key === "laravel_session") unset($_COOKIE[$key]);
+    //         }
+    //         if(str_contains($request->link, '/notebooks')){
+    //             if(empty($_COOKIE['/notebook/'.$request->id])){
+    //                 setcookie('/notebook/'.$request->id, $request->id, time() + 10800, '/basket');
+    //                 setcookie('/notebook/'.$request->id, $request->id, time() + 10800, '/orders');
+    //             }
+    //         } else if(str_contains($request->link, '/books')){
+    //             if(empty($_COOKIE['/book/'.$request->id])){
+    //                 setcookie('/book/'.$request->id, $request->id, time() + 10800, '/basket');
+    //                 setcookie('/book/'.$request->id, $request->id, time() + 10800, '/orders');
+    //             }
+    //         } else if(str_contains($request->link, '/mobile-phones')){
+    //             if(empty($_COOKIE['/phone/'.$request->id])){
+    //                 setcookie('/phone/'.$request->id, $request->id, time() + 10800, '/basket');
+    //                 setcookie('/phone/'.$request->id, $request->id, time() + 10800, '/orders');
+    //             }
+    //         } else if(str_contains($request->link, '/televisions')){
+    //             if(empty($_COOKIE['/tv/'.$request->id])){
+    //                 setcookie('/tv/'.$request->id, $request->id, time() + 10800, '/basket');
+    //                 setcookie('/tv/'.$request->id, $request->id, time() + 10800, '/orders');
+    //             }
+    //         }
+    //         header("Refresh: 0");
+    // }
 
-    public function basketProductDelete($link, $id)
-    {
-        if($link === '/televisions/') $link = '/tv/';
-        if($link === '/mobile-phones/') $link = '/phone/';
-        foreach ($_COOKIE as $key => $value){
-            if(str_replace(range('0', '9'), '', $key) === str_replace('s', '', $link)
-                && $value === $id){
-                setcookie($key,$value, time() - 10800, '/basket');
-                setcookie($key,$value, time() - 10800, '/orders');
-            }
-        }
-    }
+    // public function basketProductDelete($link, $id)
+    // {
+    //     if($link === '/televisions/') $link = '/tv/';
+    //     if($link === '/mobile-phones/') $link = '/phone/';
+    //     foreach ($_COOKIE as $key => $value){
+    //         if(str_replace(range('0', '9'), '', $key) === str_replace('s', '', $link)
+    //             && $value === $id){
+    //             setcookie($key,$value, time() - 10800, '/basket');
+    //             setcookie($key,$value, time() - 10800, '/orders');
+    //         }
+    //     }
+    // }
 
     // public function orderIndex($request): object
     // {
@@ -161,27 +161,27 @@ class ProductService
     //     return $product;
     // }
 
-    public function notNull($data): object
-    {
-        foreach ($data as $key => $value){
-            if($value === null) unset($data[$key]);
-        }
-        return $data;
-    }
+    // public function notNull($data): object
+    // {
+    //     foreach ($data as $key => $value){
+    //         if($value === null) unset($data[$key]);
+    //     }
+    //     return $data;
+    // }
 
-    public function mostPopular(): array
-    {
-        $orders_codes = [];
-        $orders = Order::all();
-        foreach ($orders as $order){
-            $explode = explode(' ', $order->product_code);
-            foreach ($explode as $item){
-                $orders_codes[] = str_replace(['(', ')'], '', $item);
-            }
-        }
-        $orders_codes = array_count_values($orders_codes);
-        return $orders_codes;
-    }
+    // public function mostPopular(): array
+    // {
+    //     $orders_codes = [];
+    //     $orders = Order::all();
+    //     foreach ($orders as $order){
+    //         $explode = explode(' ', $order->product_code);
+    //         foreach ($explode as $item){
+    //             $orders_codes[] = str_replace(['(', ')'], '', $item);
+    //         }
+    //     }
+    //     $orders_codes = array_count_values($orders_codes);
+    //     return $orders_codes;
+    // }
 
     // public function productsSort($products): array
     // {

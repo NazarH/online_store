@@ -16,7 +16,8 @@ use App\Models\ListMobilePhone;
 
 class Service
 {
-    public function most_popular(){
+    public function most_popular(): array
+    {
         $orders_codes = [];
         $orders = Order::all();
         foreach ($orders as $order){

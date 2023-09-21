@@ -8,10 +8,14 @@ use App\Models\Banner;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
-
-use App\Models\BlockBanner;
-use Illuminate\Http\Request;
 use App\Models\ProductAttribute;
+use App\Models\BlockBanner;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+
 use App\Http\Requests\Banner\BannerRequest;
 use App\Http\Requests\Product\ProductRequest;
 use App\Http\Requests\Category\CategoryRequest;
@@ -20,9 +24,10 @@ use App\Http\Requests\Product\ProductUpdateRequest;
 
 class AdminController extends BaseController
 {
-    public function index(): object
+    public function index(): View
     {
-        return view('admin.index');
+        $authUser = Auth::user();
+        return view('admin.index', compact('authUser'));
     }
 
     // public function statisticIndex()
@@ -41,19 +46,18 @@ class AdminController extends BaseController
     *
     */
 
-    public function bannerIndex(): object
+    public function bannerIndex(): View
     {
         $banners = Banner::all();
         return view('admin.banner-index', compact('banners'));
     }
 
-    public function bannerCreate(BannerRequest $request): object
+    public function bannerCreate(BannerRequest $request): RedirectResponse
     {
         $data = $request->validated();
         Banner::create($data);
         return redirect(route('admin.banner.index'));
     }
-
 
     /*
     *
@@ -61,13 +65,13 @@ class AdminController extends BaseController
     *
     */
 
-    public function categoryIndex(): object
+    public function categoryIndex(): View
     {
         $categories = Category::all();
         return view('admin.category-index', compact('categories'));
     }
 
-    public function categoryCreate(CategoryRequest $request): object
+    public function categoryCreate(CategoryRequest $request): RedirectResponse
     {
         $data = $request->validated();
         Category::create($data);
@@ -80,13 +84,13 @@ class AdminController extends BaseController
     *
     */
 
-    public function productIndex(Request $request): object
+    public function productIndex(Request $request): View
     {
         $products = Product::all();
         return view('admin.product-index', compact('products'));
     }
 
-    public function productCreate(Request $request): object
+    public function productCreate(Request $request): View|RedirectResponse
     {
         if($request->isMethod('get')){
             $categories = Category::all();
@@ -98,7 +102,7 @@ class AdminController extends BaseController
         }
     }
 
-    public function productUpdate(Request $request, int $id): object
+    public function productUpdate(Request $request, int $id): View|RedirectResponse
     {
         if ($request->isMethod('get')) {
             $product = Product::find($id);
@@ -111,7 +115,7 @@ class AdminController extends BaseController
         }
     }
 
-    public function productAddAttr(ProductAttrRequest $request, int $id): object
+    public function productAddAttr(ProductAttrRequest $request, int $id): RedirectResponse
     {
         $data = $request->validated();
         ProductAttribute::create([
@@ -123,7 +127,7 @@ class AdminController extends BaseController
         return redirect(route('admin.product.update', $id));
     }
 
-    public function notebookDelete(int $id): object
+    public function notebookDelete(int $id): RedirectResponse
     {
         $images = NotebookImage::where('notebook_id', $id)->delete();
         $notebooks = ListNotebook::find($id)->delete();
@@ -137,13 +141,13 @@ class AdminController extends BaseController
     *
     */
 
-    public function reviewIndex(): object
+    public function reviewIndex(): View
     {
         $reviews = Review::where('verify', 0)->get();
         return view('admin.review-index', compact('reviews'));
     }
 
-    public function reviewAccept(int $id): object
+    public function reviewAccept(int $id): RedirectResponse
     {
         Review::find($id)->update([
             'verify' => 1
@@ -151,7 +155,7 @@ class AdminController extends BaseController
         return redirect(asset('/admin/reviews'));
     }
 
-    public function reviewDelete(int $id): object
+    public function reviewDelete(int $id): RedirectResponse
     {
         Review::find($id)->delete();
         return redirect(asset('/admin/reviews'));
@@ -163,19 +167,19 @@ class AdminController extends BaseController
     *
     */
 
-    public function orderIndex(): object
+    public function orderIndex(): View
     {
         $orders = Order::all();
         return view('admin.order-index', compact('orders'));
     }
 
-    public function orderInfo(Request $request): object
+    public function orderInfo(Request $request): View
     {
         $order = Order::where('id', $request->id)->get();
         return view('admin.order-info', compact('order'));
     }
 
-    public function orderAccept(int $id): object
+    public function orderAccept(int $id): RedirectResponse
     {
         Order::find($id)->update([
             'verify' => 1
@@ -183,7 +187,7 @@ class AdminController extends BaseController
         return redirect(asset('/admin/orders'));
     }
 
-    public function orderDelete(int $id): object
+    public function orderDelete(int $id): RedirectResponse
     {
         Order::find($id)->delete();
         return redirect(asset('/admin/orders'));
@@ -195,7 +199,7 @@ class AdminController extends BaseController
     *
     */
 
-    public function userIndex(Request $request): object
+    public function userIndex(Request $request): View
     {
         if($request->isMethod('get')) $users = User::all();
         else{
@@ -205,7 +209,7 @@ class AdminController extends BaseController
         return view('admin.user-index', compact('users'));
     }
 
-    public function userRole(Request $request, $id): object
+    public function userRole(Request $request, $id): RedirectResponse
     {
         User::find($id)->update([
             'role' => $request['userRole']
@@ -213,7 +217,7 @@ class AdminController extends BaseController
         return redirect(asset('/admin/users'));
     }
 
-    public function userDelete(int $id): object
+    public function userDelete(int $id): RedirectResponse
     {
         User::find($id)->delete();
         return redirect(asset('/admin/users'));

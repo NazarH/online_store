@@ -1,13 +1,14 @@
 .banners{
     display: flex;
     flex-direction: column;
-
+    align-items: center;
 }
 
 .banners__form-top{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
 
     width: 650px;
     margin-top: 15px;
@@ -32,9 +33,8 @@
 }
 
 .table-banner{
-    width: 685px;
-    display: flex;
-    justify-content: center;
+
+
 }
 
 .choose{
