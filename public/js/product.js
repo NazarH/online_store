@@ -1,7 +1,8 @@
 var rev = 0;
 
-function reviewFunc(){
-    if(rev === 0){
+function reviewFunc()
+{
+    if (rev === 0) {
         document.getElementById('pageTop').click();
         document.getElementById('reviewForm').style='display: flex';
         document.getElementById('authBack').style='display: flex';

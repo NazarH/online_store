@@ -1,7 +1,8 @@
 localStorage.setItem('img_id', 0);
 
 var imgArr = [];
-function imgDel(id){
+function imgDel(id)
+{
     imgArr.push(id);
     document.getElementById(id).style='display: none';
     localStorage.clear();

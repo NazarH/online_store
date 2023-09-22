@@ -27,9 +27,15 @@ class AuthController extends Controller
     {
         $user = User::find($id);
         $data = $request->validated();
-        foreach ($data as $key => $value){
-            if($value === null){unset($data[$key]); continue;}
-            if($key === 'password'){$data[$key] = Hash::make($data[$key]); continue;}
+        foreach ($data as $key => $value) {
+            if ($value === null) {
+                unset($data[$key]);
+                continue;
+            }
+            if ($key === 'password') {
+                $data[$key] = Hash::make($data[$key]);
+                continue;
+            }
         }
         $user->update($data);
         return redirect(asset('/profile'));

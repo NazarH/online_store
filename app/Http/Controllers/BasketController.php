@@ -19,7 +19,7 @@ class BasketController extends BaseController
     public function basketIndex(Request $request): View
     {
         $top_banner = TopBanner::first();
-        if($request->isMethod('get')){
+        if ($request->isMethod('get')) {
             $basket = $this->service->reviewed();
         } else {
             $this->service->basket_index($request);

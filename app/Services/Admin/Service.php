@@ -20,9 +20,9 @@ class Service
     {
         $orders_codes = [];
         $orders = Order::all();
-        foreach ($orders as $order){
+        foreach ($orders as $order) {
             $explode = explode(' ', $order->product_code);
-            foreach ($explode as $item){
+            foreach ($explode as $item) {
                 $orders_codes[] = str_replace(['(', ')'], '', $item);
             }
         }
@@ -34,7 +34,7 @@ class Service
     {
         $data = $request->validated();
         $product = Product::create($data);
-        foreach ($request->file('images') as $file){
+        foreach ($request->file('images') as $file) {
             $path = $file->store('product', 'public');
             ProductImage::create([
                 'product_id' => $product->id,

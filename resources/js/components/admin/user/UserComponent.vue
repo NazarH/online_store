@@ -22,9 +22,9 @@
                 <td class="item-center">{{ user.email }}</td>
                 <td class="item-center">
                     <p v-if="user.id === auth.id">ADMIN</p>
-                    <form v-else :action="user.id + '/change-role'" method="post">
+                    <form v-else :action="'users/'+user.id + '/change-role'" method="post">
                         <input type="hidden" name="_token" :value="csrf">
-                        <select name="userRole" onchange="roleChange()">
+                        <select name="userRole" @change="roleChange()">
                             <option value="admin" :selected="user.role === 'admin'">admin</option>
                             <option value="user" :selected="user.role === 'user'">user</option>
                         </select>
@@ -46,6 +46,11 @@
 </template>
 <script>
 export default {
-    props: ['users', 'csrf', 'auth']
+    props: ['users', 'csrf', 'auth'],
+    methods:{
+        roleChange(){
+            document.getElementById('changeRole').click();
+        }
+    }
 }
 </script>

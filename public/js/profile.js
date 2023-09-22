@@ -1,6 +1,7 @@
 var prof = 0;
-function profileFunc(){
-    if(prof === 0){
+function profileFunc()
+{
+    if (prof === 0) {
         document.getElementById('profDropdown').style='display: flex';
         prof = 1;
     } else {
@@ -9,14 +10,16 @@ function profileFunc(){
     }
 }
 
-function personalView(){
+function personalView()
+{
         document.getElementById('temp').style='display: none';
         document.getElementById('personal').style='display: flex';
         document.getElementById('orders').style='display: none';
         document.getElementById('personalInfo').style='background: black; color: white;';
         document.getElementById('ordersInfo').style='background: white; color: black;';
 }
-function ordersView(){
+function ordersView()
+{
         document.getElementById('temp').style='display: none';
         document.getElementById('personal').style='display: none';
         document.getElementById('orders').style='display: flex';
@@ -25,13 +28,15 @@ function ordersView(){
 }
 
 
-function showOrderHidden1(){
+function showOrderHidden1()
+{
     console.log(1);
     document.getElementById('orderHidden1').style='display: flex !important;';
     document.getElementById('orderHidden2').style='display: none !important;';
 }
 
-function showOrderHidden2(){
+function showOrderHidden2()
+{
     console.log(2);
     document.getElementById('orderHidden1').style='display: none !important;';
     document.getElementById('orderHidden2').style='display: flex !important;';

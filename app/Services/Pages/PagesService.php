@@ -16,8 +16,11 @@ class PagesService
    {
         $category = Category::where('name', $link)->get()[0];
         $product = Product::where('id', $id)->where('category_id', $category->id)->get();
-        if (empty($product[0])) return redirect(route('pages.index'));
-        else return $product = $product[0];
+        if (empty($product[0])) {
+            return redirect(route('pages.index'));
+        } else {
+            return $product = $product[0];
+        }
 
    }
 }

@@ -22,14 +22,18 @@ class OrderController extends BaseController
     public function orderIndex(Request $request): View
     {
         $product = $this->service->order_index($request);
-        if(empty($product)) return redirect(asset('/main-page'));
+        if (empty($product)) {
+            return redirect(asset('/main-page'));
+        }
         return view('order.index', compact('product'));
     }
 
     public function orderPost(OrderRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        if(!empty(Auth::user()->id)) $data['user_id'] = Auth::user()->id;
+        if (!empty(Auth::user()->id)) {
+            $data['user_id'] = Auth::user()->id;
+        }
         $data = $this->service->not_null($data);
         Order::create($data);
         return redirect(asset('/main-page'));
@@ -38,7 +42,9 @@ class OrderController extends BaseController
     public function ordersIndex(): View
     {
         $product = $this->service->reviewed();
-        if(empty($product)) return redirect(asset('/main-page'));
+        if (empty($product)) {
+            return redirect(asset('/main-page'));
+        }
         return view('order.index', compact('product'));
     }
 }
