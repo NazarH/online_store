@@ -201,12 +201,14 @@ class AdminController extends BaseController
 
     public function userIndex(Request $request): View
     {
-        if($request->isMethod('get')) $users = User::all();
-        else{
+        $auth = Auth::user();
+        if ($request->isMethod('get')) {
+            $users = User::all();
+        } else {
             if(empty($request->id)) $users = User::all();
             else $users = User::where('id', $request->id)->get();
         }
-        return view('admin.user-index', compact('users'));
+        return view('admin.user-index', compact('users', 'auth'));
     }
 
     public function userRole(Request $request, $id): RedirectResponse
