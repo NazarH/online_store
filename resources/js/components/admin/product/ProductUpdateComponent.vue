@@ -82,7 +82,8 @@ export default {
         }
     },
     methods: {
-        createAttr() {
+        createAttr()
+        {
             axios.post(this.product.id+'/add-attr', {
                 type: this.type,
                 name: this.name,
@@ -93,7 +94,8 @@ export default {
                 this.value = null
             });
         },
-        updateProduct(){
+        updateProduct()
+        {
             axios.post(this.product.id, {
                 name: this.productName,
                 code: this.productCode,

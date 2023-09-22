@@ -37,7 +37,8 @@
             {
                 this.$emit('closeRegForm');
             },
-            register(){
+            register()
+            {
                 axios.post('/register', {name: this.name, surname: this.surname, email: this.email, password: this.password})
                     .then(res=>{    this.name = null
                                     this.age = null

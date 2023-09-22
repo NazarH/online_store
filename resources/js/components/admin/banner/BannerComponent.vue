@@ -56,7 +56,8 @@ export default {
         }
     },
     methods: {
-        addBanner() {
+        addBanner()
+        {
             axios.post('/banners/create', {
                         text: this.text,
                         banner_type: this.banner_type,
