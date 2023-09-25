@@ -3,7 +3,7 @@
         <div class="banners">
             <div class="banners__top">
                 <form action="banners/create" class="banners__form-top" id="banner-create" method="post">
-                    <input type="hidden" name="_token" :value="csrf">
+                    <input type="hidden" name="_token" :value="this.$csrf.token">
                     <input type="text" name="text" placeholder="Введіть текст банеру..." v-model="banner.text">
                     <input class="input_size" type="text" name="banner_type" placeholder="top / block"
                         v-model="banner.banner_type">
@@ -46,8 +46,7 @@
 <script>
 export default {
     props: {
-        banners: String,
-        csrf: String
+        banners: String
     },
     data() {
         return {
@@ -61,17 +60,20 @@ export default {
         }
     },
     methods: {
-        addBanner()
-        {
-            axios.post('/banners/create', {
-                        banner
-                }) .then(res => {
+        async addBanner() {
+            try {
+                const RESPONSE = await axios.post('/banners/create', {
+                    banner
+                }).then(res => {
                         banner.text = null
                         banner.banner_type = null
                         banner.text_color = null
                         banner.back_color = null
                         banner.link = null
                 });
+            } catch (error) {
+                console.error('Помилка при створенні банера', error);
+            }
         }
     }
 }

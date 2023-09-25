@@ -24,7 +24,7 @@
 
     <title>OnlineStore - адмін-панель</title>
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/admin.js'])
 </head>
 
 <body id='adm'>

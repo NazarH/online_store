@@ -1,6 +1,6 @@
 <template>
     <form action="/register" class="login-form reg" method="POST" id="registerForm">
-        <input type="hidden" name="_token" :value="csrf">
+        <input type="hidden" name="_token" :value="this.$csrf.token">
         <div class="login-top">
             <div>Реєстрація</div>
             <div class="login-close" @click="closeRegForm()">×</div>
@@ -23,9 +23,6 @@
 <script>
 export default {
     emits: ['closeRegForm'],
-    props: {
-        csrf: String
-    },
     data() {
         return {
             user:{

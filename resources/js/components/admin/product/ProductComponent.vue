@@ -3,7 +3,7 @@
         <div class="table-attributes">
             <a href="products/create">Додати товар</a>
             <form action="" method="post">
-                <input type="hidden" name="_token" :value="csrf">
+                <input type="hidden" name="_token" :value="this.$csrf.token">
                 <input type="text" name="code" placeholder="Введіть код товару...">
                 <button type="submit">Пошук</button>
             </form>
@@ -22,7 +22,7 @@
                 <td class="table-buttons">
                     <a :href="'products/' + product.id">Редагувати</a>
                     <form action="" method="post">
-                        <input type="hidden" name="_token" :value="csrf">
+                        <input type="hidden" name="_token" :value="this.$csrf.token">
                         <input type="submit" value="Видалити">
                     </form>
                 </td>
@@ -33,8 +33,7 @@
 <script>
 export default {
     props: {
-        products: String,
-        csrf: String
+        products: String
     },
 }
 </script>

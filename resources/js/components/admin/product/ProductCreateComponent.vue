@@ -1,6 +1,6 @@
 <template>
     <form action="" class="create-form" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_token" :value="csrf">
+        <input type="hidden" name="_token" :value="this.$csrf.token">
         <div>
             <div>
                 <div class="create-form__item">
@@ -43,12 +43,11 @@
 <script>
 export default {
     props: {
-        categories: String,
-        csrf: String
+        categories: String
     },
     data() {
         return {
-            product:{
+            product: {
                 name: null,
                 code: null,
                 price: null,
@@ -58,25 +57,27 @@ export default {
         }
     },
     methods: {
-        handleFileUpload(event)
-        {
+        handleFileUpload(event) {
             const files = event.target.files;
 
             for (let i = 0; i < files.length; i++) {
                 product.images.push(files[i]);
             }
         },
-        createProduct()
-        {
-            axios.post('products/create', {
-                product
-            }).then(res => {
-                product.name = null
-                product.code = null
-                product.price = null
-                product.discount = null
-                product.images = []
-            });
+        async createProduct() {
+            try {
+                const RESPONSE = await axios.post('products/create', {
+                    product
+                }).then(res => {
+                    product.name = null
+                    product.code = null
+                    product.price = null
+                    product.discount = null
+                    product.images = []
+                });
+            } catch (error) {
+                console.error('Помилка при створенні продукту', error);
+            }
         }
     }
 }

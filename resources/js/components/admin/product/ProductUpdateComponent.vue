@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <form action="" class="product" method="post">
-            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="_token" :value="this.$csrf.token">
             <div class="product__item">
                 <div class="product__name">
                     Назва
@@ -39,8 +39,8 @@
             </button>
         </form>
 
-        <form :action="product.id+'/add-attr'" class="attributs" method="post">
-            <input type="hidden" name="_token" :value="csrf">
+        <form :action="product.id + '/add-attr'" class="attributs" method="post">
+            <input type="hidden" name="_token" :value="this.$csrf.token">
             <div class="attributs__item">
                 <div class="attributs__text">
                     Тип
@@ -70,8 +70,7 @@
 export default {
     props: {
         attributes: String,
-        product: String,
-        csrf: String
+        product: String
     },
     data() {
         return {
@@ -89,21 +88,27 @@ export default {
         }
     },
     methods: {
-        createAttr()
-        {
-            axios.post(this.product.id+'/add-attr', {
-                attribute
-            }).then(res => {
-                attribute.type = null
-                attribute.name = null
-                attribute.value = null
-            });
+        async createAttr() {
+            try {
+                const RESPONSE = await axios.post(this.product.id + '/add-attr', {
+                    attribute
+                }).then(res => {
+                    attribute.type = null
+                    attribute.name = null
+                    attribute.value = null
+                });
+            } catch (error) {
+                console.error('Помилка при створенні атрибуту', error);
+            }
         },
-        updateProduct()
-        {
-            axios.post(this.product.id, {
-                product
-            });
+        async updateProduct() {
+            try {
+                const RESPONSE = await axios.post(this.product.id, {
+                    product
+                });
+            } catch (error) {
+                console.error('Помилка при оновленні продукту', error);
+            }
         }
     }
 }

@@ -3,7 +3,7 @@
         <div class="table-attributes">
             <div></div>
             <form action="" method="post">
-                <input type="hidden" name="_token" :value="csrf">
+                <input type="hidden" name="_token" :value="this.$csrf.token">
                 <input type="text" name="id" placeholder="Введіть id користувача...">
                 <button type="submit">Пошук</button>
             </form>
@@ -23,7 +23,7 @@
                 <td class="item-center">
                     <p v-if="user.id === auth.id">ADMIN</p>
                     <form v-else :action="'users/'+user.id + '/change-role'" method="post">
-                        <input type="hidden" name="_token" :value="csrf">
+                        <input type="hidden" name="_token" :value="this.$csrf.token">
                         <select name="userRole" @change="roleChange()">
                             <option value="admin" :selected="user.role === 'admin'">admin</option>
                             <option value="user" :selected="user.role === 'user'">user</option>
@@ -33,7 +33,7 @@
                 </td>
                 <td class="table-buttons">
                     <form v-if="user.id !== auth.id" :action="user.id+'/delete'" method="post">
-                        <input type="hidden" name="_token" :value="csrf">
+                        <input type="hidden" name="_token" :value="this.$csrf.token">
                         <input type="submit" value="Видалити">
                     </form>
                     <form v-else action="" method="post">
@@ -48,8 +48,7 @@
 export default {
     props: {
         users: String,
-        auth: String,
-        csrf: String
+        auth: String
     },
     methods:{
         roleChange(){

@@ -7,15 +7,14 @@
             Вихід
         </a>
         <form id="logout-form" action="/logout" method="POST">
-            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="_token" :value="this.$csrf.token">
         </form>
     </div>
 </template>
 <script>
 export default {
     props: {
-        authUser: String,
-        csrf: String
+        authUser: String
     },
 }
 </script>
