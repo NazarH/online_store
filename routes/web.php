@@ -30,27 +30,27 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
 Auth::routes();
 
-Route::prefix('profile')->group(function () {
+Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function(){
     Route::get('', [AuthController::class, 'index'])->name('profile.index');
     Route::post('/update/{id}', [AuthController::class, 'update'])->name('profile.personal');
 });
 
-Route::prefix('basket')->group(function () {
+Route::group(['namespace' => 'Basket', 'prefix' => 'basket'], function(){
     Route::get('', [BasketController::class, 'basketIndex'])->name('pages.basket.index');
     Route::post('', [BasketController::class, 'basketAdd'])->name('pages.basket.add');
     Route::post('/delete', [BasketController::class, 'basketDelete'])->name('pages.basket.delete');
 });
 
-Route::prefix('order')->group(function () {
+Route::group(['namespace' => 'Orders', 'prefix' => 'order'], function(){
     Route::get('', [OrderController::class, 'orderIndex'])->name('order.index');
     Route::post('', [OrderController::class, 'orderPost'])->name('order.post');
 });
 
-Route::prefix('orders')->group(function () {
+Route::group(['namespace' => 'Orders', 'prefix' => 'orders'], function(){
     Route::get('', [OrderController::class, 'ordersIndex'])->name('orders.index');
 });
 
-Route::prefix('/')->group(function () {
+Route::group(['namespace' => '/', 'prefix' => '/'], function(){
     Route::get('/', [PagesController::class, 'redirect'])->name('pages.redirect');
     Route::get('main-page', [PagesController::class, 'index'])->name('pages.index');
     Route::get('search', [PagesController::class, 'search'])->name('pages.search');
