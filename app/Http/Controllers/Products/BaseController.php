@@ -9,7 +9,7 @@ use App\Services\Pages\PagesService;
 
 class BaseController extends Controller
 {
-    protected $service;
+    protected PagesService $service;
     public function __construct(PagesService $service)
     {
         $this->service = $service;

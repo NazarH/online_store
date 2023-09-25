@@ -11,22 +11,22 @@
                 </div>
                 <div class="create-form__item">
                     <div>Назва товару</div>
-                    <input type="text" placeholder="" name="name" v-model="name">
+                    <input type="text" placeholder="" name="name" v-model="product.name">
                 </div>
 
                 <div class="create-form__item">
                     <div>Код товару</div>
-                    <input type="text" placeholder="" name="code" v-model="code">
+                    <input type="text" placeholder="" name="code" v-model="product.code">
                 </div>
 
                 <div class="create-form__item">
                     <div>Ціна</div>
-                    <input type="text" placeholder="0" name="price" v-model="price">
+                    <input type="text" placeholder="0" name="price" v-model="product.price">
                 </div>
 
                 <div class="create-form__item">
                     <div>Знижка</div>
-                    <input type="text" placeholder="0%" name="discount" v-model="discount">
+                    <input type="text" placeholder="0%" name="discount" v-model="product.discount">
                 </div>
 
                 <div class="create-form__title">
@@ -42,14 +42,19 @@
 </template>
 <script>
 export default {
-    props: ['categories', 'csrf'],
+    props: {
+        categories: String,
+        csrf: String
+    },
     data() {
         return {
-            name: null,
-            code: null,
-            price: null,
-            discount: null,
-            images: []
+            product:{
+                name: null,
+                code: null,
+                price: null,
+                discount: null,
+                images: []
+            }
         }
     },
     methods: {
@@ -58,23 +63,19 @@ export default {
             const files = event.target.files;
 
             for (let i = 0; i < files.length; i++) {
-                this.images.push(files[i]);
+                product.images.push(files[i]);
             }
         },
         createProduct()
         {
             axios.post('products/create', {
-                name: this.name,
-                code: this.code,
-                price: this.price,
-                discount: this.discount,
-                images: this.images
+                product
             }).then(res => {
-                this.name = null
-                this.code = null
-                this.price = null
-                this.discount = null
-                this.images = []
+                product.name = null
+                product.code = null
+                product.price = null
+                product.discount = null
+                product.images = []
             });
         }
     }

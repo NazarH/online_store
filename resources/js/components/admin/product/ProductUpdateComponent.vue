@@ -6,25 +6,25 @@
                 <div class="product__name">
                     Назва
                 </div>
-                <input name='name' type="text" :value="product.name" v-model="productName">
+                <input name='name' type="text" :value="product.name" v-model="product.name">
             </div>
             <div class="product__item">
                 <div class="product__name">
                     Код
                 </div>
-                <input name='code' type="text" :value="product.code" v-model="productCode">
+                <input name='code' type="text" :value="product.code" v-model="product.code">
             </div>
             <div class="product__item">
                 <div class="product__name">
                     Ціна
                 </div>
-                <input name='price' type="text" :value="product.price" v-model="productPrice">
+                <input name='price' type="text" :value="product.price" v-model="product.price">
             </div>
             <div class="product__item">
                 <div class="product__name">
                     Знижка
                 </div>
-                <input name='discount' type="text" :value="product.discount" v-model="productDiscount">
+                <input name='discount' type="text" :value="product.discount" v-model="product.discount">
             </div>
 
             <div v-if="attributes" v-for="attribute in attributes" class="product__item">
@@ -45,20 +45,20 @@
                 <div class="attributs__text">
                     Тип
                 </div>
-                <input type="text" name='type' placeholder="hdd, ssd, processor, display..." v-model="type">
+                <input type="text" name='type' placeholder="hdd, ssd, processor, display..." v-model="attr.type">
             </div>
             <div class="attributs__item">
                 <div class="attributs__text">
                     Назва
                 </div>
                 <input type="text" name='name' placeholder="Жорсткий диск, Твердотільний накопичувач, Дисплей..."
-                    v-model="name">
+                    v-model="attr.name">
             </div>
             <div class="attributs__item">
                 <div class="attributs__text">
                     Значення
                 </div>
-                <input type="text" name='value' placeholder="1TB, 500GB NVMe, 1920x1080..." v-model="value">
+                <input type="text" name='value' placeholder="1TB, 500GB NVMe, 1920x1080..." v-model="attr.value">
             </div>
             <button type="submit">
                 Додати новий атрибут
@@ -68,39 +68,41 @@
 </template>
 <script>
 export default {
-    props: ['attributes', 'product', 'csrf'],
+    props: {
+        attributes: String,
+        product: String,
+        csrf: String
+    },
     data() {
         return {
-            type: null,
-            name: null,
-            value: null,
-
-            productName: this.product.name,
-            productCode: this.product.code,
-            productPrice: this.product.price,
-            productDiscount: this.product.discount
+            attr: {
+                type: null,
+                name: null,
+                value: null
+            },
+            product: {
+                name: this.product.name,
+                code: this.product.code,
+                price: this.product.price,
+                discount: this.product.discount
+            }
         }
     },
     methods: {
         createAttr()
         {
             axios.post(this.product.id+'/add-attr', {
-                type: this.type,
-                name: this.name,
-                value: this.value
+                attribute
             }).then(res => {
-                this.type = null
-                this.name = null
-                this.value = null
+                attribute.type = null
+                attribute.name = null
+                attribute.value = null
             });
         },
         updateProduct()
         {
             axios.post(this.product.id, {
-                name: this.productName,
-                code: this.productCode,
-                price: this.productPrice,
-                discount: this.productDiscount
+                product
             });
         }
     }

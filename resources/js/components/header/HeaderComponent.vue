@@ -109,7 +109,12 @@ export default {
             register: false,
         }
     },
-    props: ['topBanner', 'authUser', 'csrf', 'server'],
+    props: {
+        topBanner: String,
+        authUser: String,
+        server: String,
+        csrf: String
+    },
     components: {
         LoginComponent,
         RegisterComponent,

@@ -20,7 +20,7 @@
                 <td>{{ product.code }}</td>
                 <td class="item-price">{{ product.price }}</td>
                 <td class="table-buttons">
-                    <a :href="'products/'+product.id">Редагувати</a>
+                    <a :href="'products/' + product.id">Редагувати</a>
                     <form action="" method="post">
                         <input type="hidden" name="_token" :value="csrf">
                         <input type="submit" value="Видалити">
@@ -31,7 +31,10 @@
     </div>
 </template>
 <script>
-    export default{
-        props: ['products', 'csrf']
-    }
+export default {
+    props: {
+        products: String,
+        csrf: String
+    },
+}
 </script>

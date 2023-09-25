@@ -16,24 +16,4 @@ class Review extends Model
     {
         return $this->hasMany(User::class,'id', 'user_id');
     }
-
-    public function notebook(): HasMany
-    {
-        return $this->hasMany(ListNotebook::class,'id', 'notebook_id');
-    }
-
-    public function book(): HasMany
-    {
-        return $this->hasMany(ListBook::class,'id', 'book_id');
-    }
-
-    public function phone(): HasMany
-    {
-        return $this->hasMany(ListMobilePhone::class,'id', 'phone_id');
-    }
-
-    public function tv(): HasMany
-    {
-        return $this->hasMany(ListTv::class,'id', 'television_id');
-    }
 }

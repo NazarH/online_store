@@ -46,7 +46,11 @@
 </template>
 <script>
 export default {
-    props: ['users', 'csrf', 'auth'],
+    props: {
+        users: String,
+        auth: String,
+        csrf: String
+    },
     methods:{
         roleChange(){
             document.getElementById('changeRole').click();

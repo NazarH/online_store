@@ -4,14 +4,14 @@
             <div class="banners__top">
                 <form action="banners/create" class="banners__form-top" id="banner-create" method="post">
                     <input type="hidden" name="_token" :value="csrf">
-                    <input type="text" name="text" placeholder="Введіть текст банеру..." v-model="text">
+                    <input type="text" name="text" placeholder="Введіть текст банеру..." v-model="banner.text">
                     <input class="input_size" type="text" name="banner_type" placeholder="top / block"
-                        v-model="banner_type">
+                        v-model="banner.banner_type">
                     <input class="input_size" type="text" name="text_color" placeholder="#FFFFFF - text"
-                        v-model="text_color">
+                        v-model="banner.text_color">
                     <input class="input_size" type="text" name="back_color" placeholder="#000000 - back"
-                        v-model="back_color">
-                    <input class="input_size" type="text" name="link" placeholder="Ноутбуки" v-model="link">
+                        v-model="banner.back_color">
+                    <input class="input_size" type="text" name="link" placeholder="Ноутбуки" v-model="banner.link">
                     <button type="submit">Create</button>
                 </form>
                 <table class="table table-banner">
@@ -45,31 +45,32 @@
 </template>
 <script>
 export default {
-    props: ['banners', 'csrf'],
+    props: {
+        banners: String,
+        csrf: String
+    },
     data() {
         return {
-            text: null,
-            banner_type: null,
-            text_color: null,
-            back_color: null,
-            link: null
+            banner: {
+                text: null,
+                banner_type: null,
+                text_color: null,
+                back_color: null,
+                link: null
+            }
         }
     },
     methods: {
         addBanner()
         {
             axios.post('/banners/create', {
-                        text: this.text,
-                        banner_type: this.banner_type,
-                        text_color: this.text_color,
-                        back_color: this.back_color,
-                        link: this.link
+                        banner
                 }) .then(res => {
-                        this.text = null
-                        this.banner_type = null
-                        this.text_color = null
-                        this.back_color = null
-                        this.link = null
+                        banner.text = null
+                        banner.banner_type = null
+                        banner.text_color = null
+                        banner.back_color = null
+                        banner.link = null
                 });
         }
     }

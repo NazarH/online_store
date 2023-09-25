@@ -20,7 +20,9 @@
 <script>
 export default{
     emits: ['authForm', 'registerForm'],
-    props: ['csrf'],
+    props: {
+        csrf: String
+    },
     methods: {
         closeForm()
         {

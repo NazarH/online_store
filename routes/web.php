@@ -2,12 +2,20 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ProductController;
+
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,31 +60,31 @@ Route::group(['namespace' => 'Products', 'prefix' => 'products'], function(){
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function(){
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/', [IndexController::class, 'index'])->name('admin.index');
 
-    Route::get('/banners', [AdminController::class, 'bannerIndex'])->name('admin.banner.index');
-    Route::post('/banners/create', [AdminController::class, 'bannerCreate'])->name('admin.banner.create');
+    Route::get('/banners', [BannerController::class, 'bannerIndex'])->name('admin.banner.index');
+    Route::post('/banners/create', [BannerController::class, 'bannerCreate'])->name('admin.banner.create');
 
-    Route::get('/categories', [AdminController::class, 'categoryIndex'])->name('admin.category.index');
-    Route::post('/categories/create', [AdminController::class, 'categoryCreate'])->name('admin.category.create');
+    Route::get('/categories', [CategoryController::class, 'categoryIndex'])->name('admin.category.index');
+    Route::post('/categories/create', [CategoryController::class, 'categoryCreate'])->name('admin.category.create');
 
-    Route::get('/products', [AdminController::class, 'productIndex'])->name('admin.product.index');
-    Route::match(['GET', 'POST'], '/products/create', [AdminController::class, 'productCreate'])->name('admin.product.create');
-    Route::match(['GET', 'POST'], '/products/{id}', [AdminController::class, 'productUpdate'])->name('admin.product.update');
-    Route::post('/products/{id}/add-attr', [AdminController::class, 'productAddAttr'])->name('admin.product.add');
+    Route::get('/products', [AdminProductController::class, 'productIndex'])->name('admin.product.index');
+    Route::match(['GET', 'POST'], '/products/create', [AdminProductController::class, 'productCreate'])->name('admin.product.create');
+    Route::match(['GET', 'POST'], '/products/{product}', [AdminProductController::class, 'productUpdate'])->name('admin.product.update');
+    Route::post('/products/{id}/add-attr', [AdminProductController::class, 'productAddAttr'])->name('admin.product.add');
 
-    Route::get('/orders', [AdminController::class, 'orderIndex'])->name('admin.order.index');
-    Route::get('/orders/{id}', [AdminController::class, 'orderInfo'])->name('admin.order.info');
-    Route::get('/orders/{id}/accept', [AdminController::class, 'orderAccept'])->name('admin.order.accept');
-    Route::delete('/orders/{id}/delete', [AdminController::class, 'orderDelete'])->name('admin.order.delete');
+    Route::get('/orders', [AdminOrderController::class, 'orderIndex'])->name('admin.order.index');
+    Route::get('/orders/{id}', [AdminOrderController::class, 'orderInfo'])->name('admin.order.info');
+    Route::get('/orders/{id}/accept', [AdminOrderController::class, 'orderAccept'])->name('admin.order.accept');
+    Route::delete('/orders/{id}/delete', [AdminOrderController::class, 'orderDelete'])->name('admin.order.delete');
 
-    Route::match(['GET', 'POST'],'/users', [AdminController::class, 'userIndex'])->name('admin.user.index');
-    Route::post('/users/{id}/change-role', [AdminController::class, 'userRole'])->name('admin.user.role');
-    Route::delete('/users/{id}/delete', [AdminController::class, 'userDelete'])->name('admin.user.delete');
+    Route::match(['GET', 'POST'],'/users', [UserController::class, 'userIndex'])->name('admin.user.index');
+    Route::post('/users/{id}/change-role', [UserController::class, 'userRole'])->name('admin.user.role');
+    Route::delete('/users/{id}/delete', [UserController::class, 'userDelete'])->name('admin.user.delete');
 
-    Route::get('/reviews', [AdminController::class, 'reviewIndex'])->name('admin.review.index');
-    Route::get('/reviews/{id}/accept', [AdminController::class, 'reviewAccept'])->name('admin.review.accept');
-    Route::delete('/reviews/{id}/delete', [AdminController::class, 'reviewDelete'])->name('admin.review.delete');
+    Route::get('/reviews', [ReviewController::class, 'reviewIndex'])->name('admin.review.index');
+    Route::get('/reviews/{id}/accept', [ReviewController::class, 'reviewAccept'])->name('admin.review.accept');
+    Route::delete('/reviews/{id}/delete', [ReviewController::class, 'reviewDelete'])->name('admin.review.delete');
 });
 
 

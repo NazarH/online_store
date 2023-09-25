@@ -7,13 +7,13 @@
         </div>
         <div class="login-bottom">
             <div>Ім'я</div>
-            <input type="text" name="name" v-model="name" >
+            <input type="text" name="name" v-model="user.name">
             <div>Фамілія</div>
-            <input type="text" name="surname" v-model="surname">
+            <input type="text" name="surname" v-model="user.surname">
             <div>Електронна пошта</div>
-            <input type="text" name="email" v-model="email">
+            <input type="text" name="email" v-model="user.email">
             <div>Пароль</div>
-            <input type="password" name="password" v-model="password">
+            <input type="password" name="password" v-model="user.password">
             <div class="login__btns">
                 <button type="submit">Зареєструватися</button>
             </div>
@@ -21,33 +21,36 @@
     </form>
 </template>
 <script>
-    export default{
-        emits: ['closeRegForm'],
-        props: ['csrf'],
-        data(){
-            return{
+export default {
+    emits: ['closeRegForm'],
+    props: {
+        csrf: String
+    },
+    data() {
+        return {
+            user:{
                 name: null,
                 surname: null,
                 email: null,
                 password: null
             }
+        }
+    },
+    methods: {
+        closeRegForm() {
+            this.$emit('closeRegForm');
         },
-        methods:{
-            closeRegForm()
-            {
-                this.$emit('closeRegForm');
-            },
-            register()
-            {
-                axios.post('/register', {name: this.name, surname: this.surname, email: this.email, password: this.password})
-                    .then(res=>{    this.name = null
-                                    this.age = null
-                                    this.email = null
-                                    this.password = null
-                    });
-            }
+        register() {
+            axios.post('/register', { user })
+                .then(res => {
+                    user.name = null
+                    user.age = null
+                    user.email = null
+                    user.password = null
+                });
         }
     }
+}
 </script>
 
 

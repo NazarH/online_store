@@ -154,7 +154,13 @@
 </template>
 <script>
 export default {
-    props: ['product', 'images', 'attributes', 'link', 'globalLink'],
+    props: {
+        product: String,
+        images: String,
+        attributes: String,
+        link: String,
+        globalLink: String
+    },
     data(){
         return{
             key: 0

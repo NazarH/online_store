@@ -3,7 +3,7 @@
         <div class="table-attributes">
             <form action="categories/create" class="banners__form-top" id="banner-create" method="post">
                 <input type="hidden" name="_token" :value="csrf">
-                <input type="text" name="name" placeholder="Введіть назву категорії..." v-model="name">
+                <input type="text" name="name" placeholder="Введіть назву категорії..." v-model="category.name">
                 <button type="submit">Створити</button>
             </form>
         </div>
@@ -25,24 +25,28 @@
     </div>
 </template>
 <script>
-    export default{
-        props: ['categories', 'csrf'],
-        methods: {
-            data(){
-                return{
+export default {
+    props: {
+        categories: String,
+        csrf: String
+    },
+    methods: {
+        data() {
+            return {
+                category:{
                     name: null
                 }
-            },
-            methods:{
-                createCategory()
-                {
-                    axios.post('/categories/create', {
-                        name: this.name,
-                    }) .then(res => {
-                        this.name = null
-                    });
-                }
+            }
+        },
+        methods: {
+            createCategory() {
+                axios.post('/categories/create', {
+                    category
+                }).then(res => {
+                    category.name = null
+                });
             }
         }
     }
+}
 </script>
