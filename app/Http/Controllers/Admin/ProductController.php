@@ -24,28 +24,30 @@ class ProductController extends BaseController
         return view('admin.product-index', compact('products'));
     }
 
+    public function productCreateForm(Request $request): View|RedirectResponse
+    {
+        $categories = Category::all();
+        return view('admin.product-form', compact('categories'));
+    }
+
     public function productCreate(Request $request): View|RedirectResponse
     {
-        if($request->isMethod('get')){
-            $categories = Category::all();
-            return view('admin.product-form', compact('categories'));
-        } else {
-            $request = app()->make(ProductRequest::class);
-            $this->service->productCreate($request);
-            return redirect(route('admin.product.index'));
-        }
+        $request = app()->make(ProductRequest::class);
+        $this->service->productCreate($request);
+        return redirect(route('admin.product.index'));
+    }
+
+    public function productUpdateForm(Request $request, Product $product): View|RedirectResponse
+    {
+        $attributes = ProductAttribute::where('product_id', $product->id)->get();
+        return view('admin.product-update', compact('product', 'attributes'));
     }
 
     public function productUpdate(Request $request, Product $product): View|RedirectResponse
     {
-        if ($request->isMethod('get')) {
-            $attributes = ProductAttribute::where('product_id', $product->id)->get();
-            return view('admin.product-update', compact('product', 'attributes'));
-        } else {
-            $request = app()->make(ProductUpdateRequest::class);
-            $this->service->productUpdate($request, $product->id);
-            return redirect(route('admin.product.update', $product));
-        }
+        $request = app()->make(ProductUpdateRequest::class);
+        $this->service->productUpdate($request, $product->id);
+        return redirect(route('admin.product.update', $product));
     }
 
     public function productAddAttr(ProductAttrRequest $request, int $id): RedirectResponse

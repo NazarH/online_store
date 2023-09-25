@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="table-attributes">
-            <a href="products/create">Додати товар</a>
+            <a href="products/create-form">Додати товар</a>
             <form action="" method="post">
                 <input type="hidden" name="_token" :value="this.$csrf.token">
                 <input type="text" name="code" placeholder="Введіть код товару...">
@@ -20,7 +20,7 @@
                 <td>{{ product.code }}</td>
                 <td class="item-price">{{ product.price }}</td>
                 <td class="table-buttons">
-                    <a :href="'products/' + product.id">Редагувати</a>
+                    <a :href="'products/form/' + product.id">Редагувати</a>
                     <form action="" method="post">
                         <input type="hidden" name="_token" :value="this.$csrf.token">
                         <input type="submit" value="Видалити">

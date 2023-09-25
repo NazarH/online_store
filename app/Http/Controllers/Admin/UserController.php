@@ -16,12 +16,7 @@ class UserController extends BaseController
     public function userIndex(Request $request): View
     {
         $auth = Auth::user();
-        if ($request->isMethod('get')) {
-            $users = User::all();
-        } else {
-            if(empty($request->id)) $users = User::all();
-            else $users = User::where('id', $request->id)->get();
-        }
+        $users = User::all();
         return view('admin.user-index', compact('users', 'auth'));
     }
 

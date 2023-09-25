@@ -36,7 +36,8 @@ Route::prefix('profile')->group(function () {
 });
 
 Route::prefix('basket')->group(function () {
-    Route::match(['GET', 'POST'],'', [BasketController::class, 'basketIndex'])->name('pages.basket');
+    Route::get('', [BasketController::class, 'basketIndex'])->name('pages.basket.index');
+    Route::post('', [BasketController::class, 'basketAdd'])->name('pages.basket.add');
     Route::post('/delete', [BasketController::class, 'basketDelete'])->name('pages.basket.delete');
 });
 
@@ -69,8 +70,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::post('/categories/create', [CategoryController::class, 'categoryCreate'])->name('admin.category.create');
 
     Route::get('/products', [AdminProductController::class, 'productIndex'])->name('admin.product.index');
-    Route::match(['GET', 'POST'], '/products/create', [AdminProductController::class, 'productCreate'])->name('admin.product.create');
-    Route::match(['GET', 'POST'], '/products/{product}', [AdminProductController::class, 'productUpdate'])->name('admin.product.update');
+    Route::get('/products/create-form', [AdminProductController::class, 'productCreateForm'])->name('admin.product.create.form');
+    Route::post('/products/create', [AdminProductController::class, 'productCreate'])->name('admin.product.create');
+    Route::get('/products/form/{product}', [AdminProductController::class, 'productUpdateForm'])->name('admin.product.update.form');
+    Route::post('/products/{product}', [AdminProductController::class, 'productUpdate'])->name('admin.product.update');
     Route::post('/products/{id}/add-attr', [AdminProductController::class, 'productAddAttr'])->name('admin.product.add');
 
     Route::get('/orders', [AdminOrderController::class, 'orderIndex'])->name('admin.order.index');
@@ -78,7 +81,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('/orders/{id}/accept', [AdminOrderController::class, 'orderAccept'])->name('admin.order.accept');
     Route::delete('/orders/{id}/delete', [AdminOrderController::class, 'orderDelete'])->name('admin.order.delete');
 
-    Route::match(['GET', 'POST'],'/users', [UserController::class, 'userIndex'])->name('admin.user.index');
+    Route::get('/users', [UserController::class, 'userIndex'])->name('admin.user.index');
     Route::post('/users/{id}/change-role', [UserController::class, 'userRole'])->name('admin.user.role');
     Route::delete('/users/{id}/delete', [UserController::class, 'userDelete'])->name('admin.user.delete');
 
