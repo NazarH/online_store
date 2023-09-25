@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Banner;
-use App\Models\Review;
 
 use App\Http\Controllers\Products\BaseController;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
 use Illuminate\Support\Facades\DB;

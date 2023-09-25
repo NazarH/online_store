@@ -37,7 +37,6 @@
                         :top-banner='@json($top_banner)'
                         :auth-user='@json($user)'
                         :server='@json('http://127.0.0.1:8000/')'
-                        csrf="{{ csrf_token() }}"
             />
         </div>
 

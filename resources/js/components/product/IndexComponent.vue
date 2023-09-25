@@ -12,7 +12,7 @@
                     <div class="product-info__items">
                         <div v-for="(image, index) in images" :key="image.id">
                             <div @click="setCurrentImage(index)"></div>
-                            <img :id="'block-image-' + index" :src="'http://127.0.0.1:8000/storage/' + image.image_url"
+                            <img :id="'block-image-' + index" :src="this.url + '/storage/' + image.image_url"
                                 alt="">
                         </div>
                     </div>
@@ -159,12 +159,13 @@ export default {
     },
     data() {
         return {
-            currentImageIndex: 0
+            currentImageIndex: 0,
+            url: window.location.href.split('/').slice(0, 3).join('/')
         }
     },
     computed: {
         currentImageUrl() {
-            return 'http://127.0.0.1:8000/storage/'+this.images[this.currentImageIndex].image_url;
+            return this.url+'/storage/'+this.images[this.currentImageIndex].image_url;
         }
     },
     methods: {

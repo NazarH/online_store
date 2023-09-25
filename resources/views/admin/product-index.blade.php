@@ -1,4 +1,4 @@
 @extends('layouts.admin')
 @section('content')
-    <product-component :products='@json($products)' csrf='{{ csrf_token() }}'></product-component>
+    <product-component :products='@json($products)'></product-component>
 @endsection
