@@ -3,24 +3,20 @@
         <div class="product-info">
             <div class="product-info__images">
                 <div class="product-info__main-image">
-                    <img v-for="image in images" :id="'main-img-' + (image.id-1)" class="main-img"
-                        :src="'http://127.0.0.1:8000/storage/' + image.image_url" alt="">
+                    <img :id="'main-img-' + currentImageIndex" class="main-img" :src="currentImageUrl" alt="">
                 </div>
                 <div class="product-info__slider">
-                    <div class="img-left" @click="leftClick()">
+                    <div class="img-left" @click="prevImage()">
                         ❰
                     </div>
                     <div class="product-info__items">
-
-                        <div v-for="image in images" :key="image.id">
-                            <div id="l" @click="pressLeftImg(images.length)"></div>
-                            <img :id="'block-image-' + (image.id-1)" :src="'http://127.0.0.1:8000/storage/' + image.image_url"
+                        <div v-for="(image, index) in images" :key="image.id">
+                            <div @click="setCurrentImage(index)"></div>
+                            <img :id="'block-image-' + index" :src="'http://127.0.0.1:8000/storage/' + image.image_url"
                                 alt="">
-                            <div id="r" @click="pressRightImg(images.length)"></div>
                         </div>
-
                     </div>
-                    <div class="img-right" @click="rightClick()">
+                    <div class="img-right" @click="nextImage()">
                         ❱
                     </div>
                 </div>
@@ -161,49 +157,25 @@ export default {
         link: String,
         globalLink: String
     },
-    data(){
-        return{
-            key: 0
+    data() {
+        return {
+            currentImageIndex: 0
+        }
+    },
+    computed: {
+        currentImageUrl() {
+            return 'http://127.0.0.1:8000/storage/'+this.images[this.currentImageIndex].image_url;
         }
     },
     methods: {
-        leftClick()
-        {
-            document.getElementById('l').click();
+        prevImage() {
+            this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
         },
-        rightClick()
-        {
-            document.getElementById('r').click();
+        nextImage() {
+            this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
         },
-        pressLeftImg(count)
-        {
-            document.getElementById('block-image-' + this.key).style = 'border: none';
-            document.getElementById('main-img-' + this.key).style = 'display: none';
-            if (this.key === 0) {
-                this.key = count - 1;
-                document.getElementById('block-image-' + 0).style = 'border: none;';
-                document.getElementById('block-image-' + this.key).style = 'border: 1px solid #C3C3C3;';
-                document.getElementById('main-img-' + this.key).style = 'display: block';
-            } else {
-                this.key--;
-                document.getElementById('block-image-' + this.key).style = 'border: 1px solid #C3C3C3;';
-                document.getElementById('main-img-' + this.key).style = 'display: block';
-            }
-        },
-        pressRightImg(count)
-        {
-            document.getElementById('block-image-' + this.key).style = 'border: none';
-            document.getElementById('main-img-' + this.key).style = 'display: none';
-            this.key++;
-            if (this.key > count - 1) {
-                this.key = 0;
-                document.getElementById('block-image-' + (count - 1)).style = 'border: none;';
-                document.getElementById('block-image-' + this.key).style = 'border: 1px solid #C3C3C3;';
-                document.getElementById('main-img-' + this.key).style = 'display: block';
-            } else {
-                document.getElementById('block-image-' + this.key).style = 'border: 1px solid #C3C3C3;';
-                document.getElementById('main-img-' + this.key).style = 'display: block';
-            }
+        setCurrentImage(index) {
+            this.currentImageIndex = index;
         }
     }
 }

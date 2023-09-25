@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesService
 {
-   public function index($link, $id): RedirectResponse|Product
+   public function index(string $link, int $id): RedirectResponse|Product
    {
         $category = Category::where('name', $link)->get()[0];
         $product = Product::where('id', $id)->where('category_id', $category->id)->get();
