@@ -16,12 +16,6 @@ adm.component('product-component', ProductComponent);
 adm.component('product-create-component', ProductCreateComponent);
 adm.component('product-update-component', ProductUpdateComponent);
 adm.component('user-component', UserComponent);
-
-const csrf = reactive({
-    token: '2fRmwdl16lkXwjNZ9HPOAYDndD9M59uqESVkf2sE'
-});
-adm.config.globalProperties.$csrf = csrf;
-
 adm.mount('#adm');
 
 

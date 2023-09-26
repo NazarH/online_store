@@ -2,7 +2,7 @@
     <div class="container">
         <div class="table-attributes">
             <form action="categories/create" class="banners__form-top" id="banner-create" method="post">
-                <input type="hidden" name="_token" :value="this.$csrf.token">
+                <input type="hidden" name="_token" :value="csrf">
                 <input type="text" name="name" placeholder="Введіть назву категорії..." v-model="category.name">
                 <button type="submit">Створити</button>
             </form>
@@ -16,7 +16,7 @@
                 <td class="item-name">{{ category.name }}</td>
                 <td>
                     <form action="" method="post">
-                        <input type="hidden" name="_token" :value="this.$csrf.token">
+                        <input type="hidden" name="_token" :value="csrf">
                         <input type="submit" value="Видалити">
                     </form>
                 </td>
@@ -32,6 +32,7 @@ export default {
     methods: {
         data() {
             return {
+                csrf: window.csrfToken,
                 category: {
                     name: null
                 }

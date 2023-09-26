@@ -77,12 +77,10 @@
     <template v-if="authUser === null">
         <LoginComponent
             v-show="login"
-            :csrf="csrf"
             @authForm="authForm"
             @registerForm="registerForm">
         </LoginComponent>
         <RegisterComponent
-            :csrf="csrf"
             v-show="register"
             @closeRegForm="closeRegForm">
         </RegisterComponent>
@@ -90,7 +88,6 @@
     <template v-else>
         <DropdownComponent
             :authUser="authUser"
-            :csrf="csrf"
         ></DropdownComponent>
     </template>
 </template>
@@ -112,8 +109,7 @@ export default {
     props: {
         topBanner: String,
         authUser: String,
-        server: String,
-        csrf: String
+        server: String
     },
     components: {
         LoginComponent,

@@ -16,12 +16,6 @@ app.component('login-component', LoginComponent);
 app.component('register-component', RegisterComponent);
 app.component('dropdown-component', DropdownComponent);
 app.component('index-component', IndexComponent);
-
-const csrf = reactive({
-    token: '2fRmwdl16lkXwjNZ9HPOAYDndD9M59uqESVkf2sE'
-});
-app.config.globalProperties.$csrf = csrf;
-
 app.mount('#app');
 
 

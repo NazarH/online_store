@@ -21,6 +21,9 @@
     <script type="text/javascript" src="{{ asset('js/basket.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/product.js') }}"></script>
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+    </script>
 
     <title>OnlineStore - адмін-панель</title>
 

@@ -26,6 +26,9 @@
     <script type="text/javascript" src="{{ asset('js/basket.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/admin.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/product.js') }}"></script>
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+    </script>
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -39,7 +42,6 @@
                         :server='@json('http://127.0.0.1:8000/')'
             />
         </div>
-
         <div class="content">
             @yield('content')
         </div>

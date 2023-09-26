@@ -3,7 +3,7 @@
         <div class="banners">
             <div class="banners__top">
                 <form action="banners/create" class="banners__form-top" id="banner-create" method="post">
-                    <input type="hidden" name="_token" :value="this.$csrf.token">
+                    <input type="hidden" name="_token" :value="csrf">
                     <input type="text" name="text" placeholder="Введіть текст банеру..." v-model="banner.text">
                     <input class="input_size" type="text" name="banner_type" placeholder="top / block"
                         v-model="banner.banner_type">
@@ -50,6 +50,7 @@ export default {
     },
     data() {
         return {
+            csrf: window.csrfToken,
             banner: {
                 text: null,
                 banner_type: null,
@@ -59,6 +60,7 @@ export default {
             }
         }
     },
+
     methods: {
         async addBanner() {
             try {

@@ -1,6 +1,6 @@
 <template>
     <form action="" class="create-form" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_token" :value="this.$csrf.token">
+        <input type="hidden" name="_token" :value="csrf">
         <div>
             <div>
                 <div class="create-form__item">
@@ -47,6 +47,7 @@ export default {
     },
     data() {
         return {
+            csrf: window.csrfToken,
             product: {
                 name: null,
                 code: null,

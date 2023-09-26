@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <form action="" class="product" method="post">
-            <input type="hidden" name="_token" :value="this.$csrf.token">
+            <input type="hidden" name="_token" :value="csrf">
             <div class="product__item">
                 <div class="product__name">
                     Назва
@@ -74,6 +74,7 @@ export default {
     },
     data() {
         return {
+            csrf: window.csrfToken,
             attr: {
                 type: null,
                 name: null,

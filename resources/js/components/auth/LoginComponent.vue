@@ -1,6 +1,6 @@
 <template>
     <form class="login-form" method="POST" action="/login" id="loginForm">
-        <input type="hidden" name="_token" :value="this.$csrf.token">
+        <input type="hidden" name="_token" :value="csrf">
         <div class="login-top">
             <div>Вхід</div>
             <div class="login-close" @click="closeForm()">×</div>
@@ -20,6 +20,11 @@
 <script>
 export default{
     emits: ['authForm', 'registerForm'],
+    data(){
+        return {
+            csrf: window.csrfToken
+        }
+    },
     methods: {
         closeForm()
         {
