@@ -17,7 +17,7 @@ class PagesController extends BaseController
 {
     public function index(): View
     {
-        $top_banner = Banner::where('banner_type', 'top')->latest()->get()[0];
+        $top_banner = Banner::where('banner_type', 'top')->latest()->first();
         $block_banners = Banner::where('banner_type', 'block')->get();
         $user = Auth::user();
         return view('main-page.index', compact('top_banner', 'block_banners', 'user'));
