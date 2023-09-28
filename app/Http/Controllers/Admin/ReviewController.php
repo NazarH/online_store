@@ -12,13 +12,13 @@ use App\Http\Controllers\BaseController;
 
 class ReviewController extends BaseController
 {
-    public function reviewIndex(): View
+    public function index(): View
     {
         $reviews = Review::where('verify', 0)->get();
         return view('admin.review-index', compact('reviews'));
     }
 
-    public function reviewAccept(int $id): RedirectResponse
+    public function accept(int $id): RedirectResponse
     {
         Review::find($id)->update([
             'verify' => 1
@@ -26,7 +26,7 @@ class ReviewController extends BaseController
         return redirect(asset('/admin/reviews'));
     }
 
-    public function reviewDelete(int $id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         Review::find($id)->delete();
         return redirect(asset('/admin/reviews'));

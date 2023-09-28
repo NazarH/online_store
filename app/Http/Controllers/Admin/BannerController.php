@@ -13,13 +13,13 @@ use App\Http\Requests\Banner\BannerRequest;
 
 class BannerController extends BaseController
 {
-    public function bannerIndex(): View
+    public function index(): View
     {
         $banners = Banner::all();
         return view('admin.banner-index', compact('banners'));
     }
 
-    public function bannerCreate(BannerRequest $request): RedirectResponse
+    public function create(BannerRequest $request): RedirectResponse
     {
         $data = $request->validated();
         Banner::create($data);

@@ -13,14 +13,14 @@ use App\Http\Controllers\BaseController;
 
 class UserController extends BaseController
 {
-    public function userIndex(Request $request): View
+    public function index(Request $request): View
     {
         $auth = Auth::user();
         $users = User::all();
         return view('admin.user-index', compact('users', 'auth'));
     }
 
-    public function userRole(Request $request, $id): RedirectResponse
+    public function role(Request $request, $id): RedirectResponse
     {
         User::find($id)->update([
             'role' => $request['userRole']
@@ -28,7 +28,7 @@ class UserController extends BaseController
         return redirect(asset('/admin/users'));
     }
 
-    public function userDelete(int $id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         User::find($id)->delete();
         return redirect(asset('/admin/users'));

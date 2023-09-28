@@ -12,19 +12,19 @@ use App\Http\Controllers\BaseController;
 
 class OrderController extends BaseController
 {
-    public function orderIndex(): View
+    public function index(): View
     {
         $orders = Order::all();
         return view('admin.order-index', compact('orders'));
     }
 
-    public function orderInfo(Request $request): View
+    public function info(Request $request): View
     {
         $order = Order::where('id', $request->id)->get();
         return view('admin.order-info', compact('order'));
     }
 
-    public function orderAccept(int $id): RedirectResponse
+    public function accept(int $id): RedirectResponse
     {
         Order::find($id)->update([
             'verify' => 1
@@ -32,7 +32,7 @@ class OrderController extends BaseController
         return redirect(asset('/admin/orders'));
     }
 
-    public function orderDelete(int $id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         Order::find($id)->delete();
         return redirect(asset('/admin/orders'));

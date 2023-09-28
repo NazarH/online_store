@@ -13,13 +13,13 @@ use App\Http\Requests\Category\CategoryRequest;
 
 class CategoryController extends BaseController
 {
-    public function categoryIndex(): View
+    public function index(): View
     {
         $categories = Category::all();
         return view('admin.category-index', compact('categories'));
     }
 
-    public function categoryCreate(CategoryRequest $request): RedirectResponse
+    public function create(CategoryRequest $request): RedirectResponse
     {
         $data = $request->validated();
         Category::create($data);
