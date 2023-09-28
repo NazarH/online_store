@@ -46,7 +46,7 @@ class ProductController extends BaseController
     public function update(Request $request, Product $product): View|RedirectResponse
     {
         $request = app()->make(ProductUpdateRequest::class);
-        $this->service->update($request, $product->id);
+        $this->service->update($request, $product);
         return redirect(route('admin.product.update', $product));
     }
 
