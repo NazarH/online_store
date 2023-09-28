@@ -14,9 +14,11 @@ use App\Models\ProductImage;
 use App\Models\NotebookImage;
 use App\Models\ListMobilePhone;
 
+use Illuminate\Http\Request;
+
 class Service
 {
-    public function create($request)
+    public function create(Request $request)
     {
         $data = $request->validated();
         $product = Product::create($data);
@@ -29,7 +31,7 @@ class Service
         }
     }
 
-    public function update($request, int $id)
+    public function update(Request $request, int $id)
     {
         $product = Product::find($id);
         $data = $request->validated();

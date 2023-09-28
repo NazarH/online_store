@@ -33,7 +33,7 @@ export default {
     props: {
         authUser: String
     },
-    data(){
+    data() {
         return {
             csrf: window.csrfToken
         }
