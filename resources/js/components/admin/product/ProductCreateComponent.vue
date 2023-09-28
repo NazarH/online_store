@@ -1,44 +1,88 @@
 <template>
-    <form action="" class="create-form" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_token" :value="csrf">
-        <div>
-            <div>
-                <div class="create-form__item">
-                    <div>Оберіть категорію</div>
-                    <select name="category_id">
-                        <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
-                    </select>
-                </div>
-                <div class="create-form__item">
-                    <div>Назва товару</div>
-                    <input type="text" placeholder="" name="name" v-model="product.name">
-                </div>
-
-                <div class="create-form__item">
-                    <div>Код товару</div>
-                    <input type="text" placeholder="" name="code" v-model="product.code">
-                </div>
-
-                <div class="create-form__item">
-                    <div>Ціна</div>
-                    <input type="text" placeholder="0" name="price" v-model="product.price">
-                </div>
-
-                <div class="create-form__item">
-                    <div>Знижка</div>
-                    <input type="text" placeholder="0%" name="discount" v-model="product.discount">
-                </div>
-
-                <div class="create-form__title">
-                    Завантажити фото
-                    <input type="file" name="images[]" multiple @change="handleFileUpload">
-                </div>
-            </div>
+  <form
+    action=""
+    class="create-form"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <input
+      type="hidden"
+      name="_token"
+      :value="csrf"
+    >
+    <div>
+      <div>
+        <div class="create-form__item">
+          <div>Оберіть категорію</div>
+          <select name="category_id">
+            <option
+              v-for="category in categories"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
         </div>
-        <div class="create-form__subm-block">
-            <button type="submit" class="create-form__submit">Створити</button>
+        <div class="create-form__item">
+          <div>Назва товару</div>
+          <input
+            v-model="product.name"
+            type="text"
+            placeholder=""
+            name="name"
+          >
         </div>
-    </form>
+
+        <div class="create-form__item">
+          <div>Код товару</div>
+          <input
+            v-model="product.code"
+            type="text"
+            placeholder=""
+            name="code"
+          >
+        </div>
+
+        <div class="create-form__item">
+          <div>Ціна</div>
+          <input
+            v-model="product.price"
+            type="text"
+            placeholder="0"
+            name="price"
+          >
+        </div>
+
+        <div class="create-form__item">
+          <div>Знижка</div>
+          <input
+            v-model="product.discount"
+            type="text"
+            placeholder="0%"
+            name="discount"
+          >
+        </div>
+
+        <div class="create-form__title">
+          Завантажити фото
+          <input
+            type="file"
+            name="images[]"
+            multiple
+            @change="handleFileUpload"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="create-form__subm-block">
+      <button
+        type="submit"
+        class="create-form__submit"
+      >
+        Створити
+      </button>
+    </div>
+  </form>
 </template>
 <script>
 export default {

@@ -10,12 +10,12 @@ import ProductUpdateComponent from './components/admin/product/ProductUpdateComp
 import UserComponent from './components/admin/user/UserComponent.vue';
 
 const adm = createApp({});
-adm.component('banner-component', BannerComponent);
-adm.component('category-component', CategoryComponent);
-adm.component('product-component', ProductComponent);
-adm.component('product-create-component', ProductCreateComponent);
-adm.component('product-update-component', ProductUpdateComponent);
-adm.component('user-component', UserComponent);
+adm.component('BannerComponent', BannerComponent);
+adm.component('CategoryComponent', CategoryComponent);
+adm.component('ProductComponent', ProductComponent);
+adm.component('ProductCreateComponent', ProductCreateComponent);
+adm.component('ProductUpdateComponent', ProductUpdateComponent);
+adm.component('UserComponent', UserComponent);
 adm.mount('#adm');
 
 

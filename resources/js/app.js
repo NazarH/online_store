@@ -10,12 +10,12 @@ import DropdownComponent from './components/auth/DropdownComponent.vue';
 import IndexComponent from './components/product/IndexComponent.vue';
 
 const app = createApp({});
-app.component('header-component', HeaderComponent);
-app.component('footer-component', FooterComponent);
-app.component('login-component', LoginComponent);
-app.component('register-component', RegisterComponent);
-app.component('dropdown-component', DropdownComponent);
-app.component('index-component', IndexComponent);
+app.component('HeaderComponent', HeaderComponent);
+app.component('FooterComponent', FooterComponent);
+app.component('LoginComponent', LoginComponent);
+app.component('RegisterComponent', RegisterComponent);
+app.component('DropdownComponent', DropdownComponent);
+app.component('IndexComponent', IndexComponent);
 app.mount('#app');
 
 
