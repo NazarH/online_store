@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index($link, Product $product): RedirectResponse|View
+    public function index(Category $link, Product $product): RedirectResponse|View
     {
         $top_banner = Banner::where('banner_type', 'top')->latest()->first();
         $block_banners = Banner::where('banner_type', 'block')->get();
