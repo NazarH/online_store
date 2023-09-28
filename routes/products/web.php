@@ -8,5 +8,5 @@ Route::group(['namespace' => 'Products', 'prefix' => 'products'], function(){
     Route::bind('link', function ($value) {
         return Category::where('name', $value)->first();
     });
-    Route::get('{link}/{product}', [ProductController::class, 'index'])->name('products.index');
+    Route::get('{link}/{prod}', [ProductController::class, 'index'])->name('products.index');
 });

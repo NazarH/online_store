@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index(Category $link, Product $product): RedirectResponse|View
+    public function index(Category $link, Product $prod): RedirectResponse|View
     {
         $top_banner = Banner::where('banner_type', 'top')->latest()->first();
         $user = Auth::user();
-        $product = Product::where('id', $product->id)->where('category_id', $link->id)->first();
+        $product = Product::where('id', $prod->id)->where('category_id', $link->id)->first();
         if (empty($product)) {
             return redirect(route('pages.index'));
         }
