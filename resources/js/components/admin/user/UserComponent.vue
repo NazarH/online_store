@@ -50,13 +50,14 @@ export default {
         users: String,
         auth: String
     },
-    data(){
+    data() {
         return {
             csrf: window.csrfToken
         }
     },
-    methods:{
-        roleChange(){
+    methods: {
+        roleChange()
+        {
             document.getElementById('changeRole').click();
         }
     }

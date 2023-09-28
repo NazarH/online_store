@@ -20,7 +20,7 @@
 <script>
 export default{
     emits: ['authForm', 'registerForm'],
-    data(){
+    data() {
         return {
             csrf: window.csrfToken
         }

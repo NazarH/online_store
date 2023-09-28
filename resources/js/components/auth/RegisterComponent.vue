@@ -26,7 +26,7 @@ export default {
     data() {
         return {
             csrf: window.csrfToken,
-            user:{
+            user: {
                 name: null,
                 surname: null,
                 email: null,
@@ -35,10 +35,12 @@ export default {
         }
     },
     methods: {
-        closeRegForm() {
+        closeRegForm()
+        {
             this.$emit('closeRegForm');
         },
-        register() {
+        register()
+        {
             axios.post('/register', { user })
                 .then(res => {
                     user.name = null

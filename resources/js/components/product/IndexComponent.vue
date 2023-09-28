@@ -164,18 +164,22 @@ export default {
         }
     },
     computed: {
-        currentImageUrl() {
+        currentImageUrl()
+        {
             return this.url+'/storage/'+this.images[this.currentImageIndex].image_url;
         }
     },
     methods: {
-        prevImage() {
+        prevImage()
+        {
             this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
         },
-        nextImage() {
+        nextImage()
+        {
             this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
         },
-        setCurrentImage(index) {
+        setCurrentImage(index)
+        {
             this.currentImageIndex = index;
         }
     }

@@ -35,8 +35,8 @@ export default {
     props: {
         products: String
     },
-    data(){
-        return{
+    data() {
+        return {
             csrf: window.csrfToken
         }
     }

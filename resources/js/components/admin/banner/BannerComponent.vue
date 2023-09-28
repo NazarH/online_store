@@ -62,7 +62,8 @@ export default {
     },
 
     methods: {
-        async addBanner() {
+        async addBanner()
+        {
             try {
                 const RESPONSE = await axios.post('/banners/create', {
                     banner
