@@ -33,7 +33,7 @@ class ProductController extends BaseController
     public function create(Request $request): View|RedirectResponse
     {
         $request = app()->make(ProductRequest::class);
-        $this->service->productCreate($request);
+        $this->service->create($request);
         return redirect(route('admin.product.index'));
     }
 
@@ -46,19 +46,19 @@ class ProductController extends BaseController
     public function update(Request $request, Product $product): View|RedirectResponse
     {
         $request = app()->make(ProductUpdateRequest::class);
-        $this->service->productUpdate($request, $product->id);
+        $this->service->update($request, $product->id);
         return redirect(route('admin.product.update', $product));
     }
 
-    public function add(ProductAttrRequest $request, int $id): RedirectResponse
+    public function add(ProductAttrRequest $request, Product $product): RedirectResponse
     {
         $data = $request->validated();
         ProductAttribute::create([
-            'product_id' => $id,
+            'product_id' => $product->id,
             'name' => $data['name'],
             'type' => $data['type'],
             'value' => $data['value']
         ]);
-        return redirect(route('admin.product.update', $id));
+        return redirect(route('admin.product.update', $product->id));
     }
 }

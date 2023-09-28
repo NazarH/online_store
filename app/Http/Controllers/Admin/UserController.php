@@ -20,17 +20,17 @@ class UserController extends BaseController
         return view('admin.user-index', compact('users', 'auth'));
     }
 
-    public function role(Request $request, $id): RedirectResponse
+    public function role(Request $request, User $user): RedirectResponse
     {
-        User::find($id)->update([
+        User::find($user->id)->update([
             'role' => $request['userRole']
         ]);
         return redirect(asset('/admin/users'));
     }
 
-    public function delete(int $id): RedirectResponse
+    public function delete(User $user): RedirectResponse
     {
-        User::find($id)->delete();
+        User::find($user->id)->delete();
         return redirect(asset('/admin/users'));
     }
 }

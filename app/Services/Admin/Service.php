@@ -16,21 +16,7 @@ use App\Models\ListMobilePhone;
 
 class Service
 {
-    public function most_popular(): array
-    {
-        $orders_codes = [];
-        $orders = Order::all();
-        foreach ($orders as $order) {
-            $explode = explode(' ', $order->product_code);
-            foreach ($explode as $item) {
-                $orders_codes[] = str_replace(['(', ')'], '', $item);
-            }
-        }
-        $orders_codes = array_count_values($orders_codes);
-        return $orders_codes;
-    }
-
-    public function productCreate($request)
+    public function create($request)
     {
         $data = $request->validated();
         $product = Product::create($data);
@@ -43,7 +29,7 @@ class Service
         }
     }
 
-    public function productUpdate($request, int $id)
+    public function update($request, int $id)
     {
         $product = Product::find($id);
         $data = $request->validated();

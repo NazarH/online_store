@@ -24,18 +24,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::post('/products/create', [AdminProductController::class, 'create'])->name('admin.product.create');
     Route::get('/products/form/{product}', [AdminProductController::class, 'updateForm'])->name('admin.product.update.form');
     Route::post('/products/{product}', [AdminProductController::class, 'update'])->name('admin.product.update');
-    Route::post('/products/{id}/add-attr', [AdminProductController::class, 'add'])->name('admin.product.add');
+    Route::post('/products/{product}/add-attr', [AdminProductController::class, 'add'])->name('admin.product.add');
 
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('admin.order.index');
-    Route::get('/orders/{id}', [AdminOrderController::class, 'info'])->name('admin.order.info');
-    Route::get('/orders/{id}/accept', [AdminOrderController::class, 'accept'])->name('admin.order.accept');
-    Route::delete('/orders/{id}/delete', [AdminOrderController::class, 'delete'])->name('admin.order.delete');
+    Route::get('/orders/{order}', [AdminOrderController::class, 'info'])->name('admin.order.info');
+    Route::get('/orders/{order}/accept', [AdminOrderController::class, 'accept'])->name('admin.order.accept');
+    Route::delete('/orders/{order}/delete', [AdminOrderController::class, 'delete'])->name('admin.order.delete');
 
     Route::get('/users', [UserController::class, 'index'])->name('admin.user.index');
-    Route::post('/users/{id}/change-role', [UserController::class, 'role'])->name('admin.user.role');
-    Route::delete('/users/{id}/delete', [UserController::class, 'delete'])->name('admin.user.delete');
-
-    Route::get('/reviews', [ReviewController::class, 'index'])->name('admin.review.index');
-    Route::get('/reviews/{id}/accept', [ReviewController::class, 'accept'])->name('admin.review.accept');
-    Route::delete('/reviews/{id}/delete', [ReviewController::class, 'delete'])->name('admin.review.delete');
+    Route::post('/users/{user}/change-role', [UserController::class, 'role'])->name('admin.user.role');
+    Route::delete('/users/{user}/delete', [UserController::class, 'delete'])->name('admin.user.delete');
 });

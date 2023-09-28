@@ -24,17 +24,17 @@ class OrderController extends BaseController
         return view('admin.order-info', compact('order'));
     }
 
-    public function accept(int $id): RedirectResponse
+    public function accept(Order $order): RedirectResponse
     {
-        Order::find($id)->update([
+        Order::find($order->id)->update([
             'verify' => 1
         ]);
         return redirect(asset('/admin/orders'));
     }
 
-    public function delete(int $id): RedirectResponse
+    public function delete(Order $order): RedirectResponse
     {
-        Order::find($id)->delete();
+        Order::find($order->id)->delete();
         return redirect(asset('/admin/orders'));
     }
 }
