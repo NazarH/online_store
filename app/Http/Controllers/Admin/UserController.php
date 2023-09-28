@@ -22,7 +22,7 @@ class UserController extends BaseController
 
     public function role(Request $request, User $user): RedirectResponse
     {
-        User::find($user->id)->update([
+        $user->update([
             'role' => $request['userRole']
         ]);
         return redirect(asset('/admin/users'));
@@ -30,7 +30,7 @@ class UserController extends BaseController
 
     public function delete(User $user): RedirectResponse
     {
-        User::find($user->id)->delete();
+        $user->delete();
         return redirect(asset('/admin/users'));
     }
 }

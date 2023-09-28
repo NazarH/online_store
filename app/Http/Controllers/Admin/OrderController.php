@@ -26,7 +26,7 @@ class OrderController extends BaseController
 
     public function accept(Order $order): RedirectResponse
     {
-        Order::find($order->id)->update([
+        $order->update([
             'verify' => 1
         ]);
         return redirect(asset('/admin/orders'));
