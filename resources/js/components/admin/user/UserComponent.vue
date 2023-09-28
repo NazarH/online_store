@@ -22,7 +22,7 @@
                 <td class="item-center">{{ user.email }}</td>
                 <td class="item-center">
                     <p v-if="user.id === auth.id">ADMIN</p>
-                    <form v-else :action="'users/'+user.id + '/change-role'" method="post">
+                    <form v-else :action="'users/' + user.id + '/change-role'" method="post">
                         <input type="hidden" name="_token" :value="csrf">
                         <select name="userRole" @change="roleChange()">
                             <option value="admin" :selected="user.role === 'admin'">admin</option>
@@ -32,7 +32,7 @@
                     </form>
                 </td>
                 <td class="table-buttons">
-                    <form v-if="user.id !== auth.id" :action="user.id+'/delete'" method="post">
+                    <form v-if="user.id !== auth.id" :action="user.id + '/delete'" method="post">
                         <input type="hidden" name="_token" :value="csrf">
                         <input type="submit" value="Видалити">
                     </form>
@@ -56,8 +56,7 @@ export default {
         }
     },
     methods: {
-        roleChange()
-        {
+        roleChange() {
             document.getElementById('changeRole').click();
         }
     }

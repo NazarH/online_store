@@ -58,16 +58,14 @@ export default {
         }
     },
     methods: {
-        handleFileUpload(event)
-        {
+        handleFileUpload(event) {
             const files = event.target.files;
 
             for (let i = 0; i < files.length; i++) {
                 product.images.push(files[i]);
             }
         },
-        async createProduct()
-        {
+        async createProduct() {
             try {
                 const RESPONSE = await axios.post('products/create', {
                     product

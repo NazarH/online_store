@@ -39,8 +39,7 @@ export default {
             }
         },
         methods: {
-            async createCategory()
-            {
+            async createCategory() {
                 try {
                     const RESPONSE = await axios.post('/categories/create', {
                         category

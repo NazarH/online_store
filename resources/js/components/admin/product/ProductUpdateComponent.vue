@@ -89,8 +89,7 @@ export default {
         }
     },
     methods: {
-        async createAttr()
-        {
+        async createAttr() {
             try {
                 const RESPONSE = await axios.post(this.product.id + '/add-attr', {
                     attribute
@@ -103,8 +102,7 @@ export default {
                 console.error('Помилка при створенні атрибуту', error);
             }
         },
-        async updateProduct()
-        {
+        async updateProduct() {
             try {
                 const RESPONSE = await axios.post(this.product.id, {
                     product

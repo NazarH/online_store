@@ -62,17 +62,16 @@ export default {
     },
 
     methods: {
-        async addBanner()
-        {
+        async addBanner() {
             try {
                 const RESPONSE = await axios.post('/banners/create', {
                     banner
                 }).then(res => {
-                        banner.text = null
-                        banner.banner_type = null
-                        banner.text_color = null
-                        banner.back_color = null
-                        banner.link = null
+                    banner.text = null
+                    banner.banner_type = null
+                    banner.text_color = null
+                    banner.back_color = null
+                    banner.link = null
                 });
             } catch (error) {
                 console.error('Помилка при створенні банера', error);
