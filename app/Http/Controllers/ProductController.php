@@ -11,14 +11,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\Products\BaseController;
-
-
-class ProductController extends BaseController
+class ProductController extends Controller
 {
     public function index($link, Product $product): RedirectResponse|View
     {
-        $top_banner = Banner::where('banner_type', 'top')->latest()->get()[0];
+        $top_banner = Banner::where('banner_type', 'top')->latest()->first();
         $block_banners = Banner::where('banner_type', 'block')->get();
         $user = Auth::user();
         $product = Product::where('id', $product->id)->where('category_id', $link->id)->first();
